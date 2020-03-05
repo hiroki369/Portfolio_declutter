@@ -1,0 +1,19 @@
+<h1>投稿者の捨てるか迷ってるもの詳細</h1>
+
+
+ <%= attachment_image_tag @post, :post_image, :fill, 200, 200, format: "", fallback: "no_image.jpg" %><br>
+<h1>タイトル</h1>
+<%= @post.title %>
+
+<h1>本文</h1>
+<%= @post.body %>
+
+<br>
+<% if @post.user == current_user %>
+<%=link_to "投稿を編集する", edit_post_path(@post) %><br>
+<%=link_to "投稿を削除する", post_path(@post), method: :delete, data: { confirm:'本当に削除しますか？'} %>
+<% end %>
+
+<h1>みんなのコメント表示</h1>
+
+<%= link_to "戻る", root_path %>
