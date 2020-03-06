@@ -20,18 +20,21 @@
 <!-- コメント一覧 -->
 
 <% @post.post_comments.each do |post_comment| %>
+<table>
 <td><%= attachment_image_tag post_comment.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size: '40x40'%></td>
-<% if :dispose = true %>
+    <% if post_comment.dispose == true %>
+    <td>思い切って捨てよう！</td>
+    <% else %>
+    <td>捨てないで！</td>
+    <% end %>
 
-捨てる捨てないボタン表示
+</table>
 
 
 
-<% else %>
 <td><%= post_comment.user.name %></td>
 <td><%= post_comment.body %></td>
 <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
-<% end %>
 <% end %>
 
 
