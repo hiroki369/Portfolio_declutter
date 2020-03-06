@@ -1,6 +1,7 @@
 <h1>投稿者の捨てるか迷ってるもの詳細</h1>
 
 
+
  <%= attachment_image_tag @post, :post_image, :fill, 200, 200, format: "", fallback: "no_image.jpg" %><br>
 <h1>タイトル</h1>
 <%= @post.title %>
@@ -15,5 +16,33 @@
 <% end %>
 
 <h1>みんなのコメント表示</h1>
+
+<!-- コメント一覧 -->
+
+<% @post.post_comments.each do |post_comment| %>
+<td><%= attachment_image_tag post_comment.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size: '40x40'%></td>
+<% if :dispose = true %>
+
+捨てる捨てないボタン表示
+
+
+
+<% else %>
+<td><%= post_comment.user.name %></td>
+<td><%= post_comment.body %></td>
+<td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+<% end %>
+<% end %>
+
+
+<!-- コメント投稿フォーム -->
+
+          <%= form_for [@post, @post_comment] do |f| %>
+          <%= f.radio_button :dispose,true, checked:true %>思い切って捨てよう！<br>
+          <%= f.radio_button :dispose,false %>捨てないで！<br>
+              <%= f.text_area :body, rows:'5', class: "form-control",placeholder: "コメントを入力" %>
+          <%= f.submit "投稿する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+          <% end %>
+
 
 <%= link_to "戻る", root_path %>
