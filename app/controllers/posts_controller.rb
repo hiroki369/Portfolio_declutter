@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-	before_action :set_posts, only: [:show, :edit, :update, :destroy]
+	before_action :set_post, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!
 
 	def new
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
 
 private
 
-	def set_posts
+	def set_post
 		@post = Post.find(params[:id])
 	end
 

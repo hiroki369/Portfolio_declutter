@@ -1,0 +1,16 @@
+ユーザー登録情報編集画面
+
+<%= form_for (@user) do |f|  %>
+
+<h1>プロフィール画像</h1>
+<%= attachment_image_tag @user, :profile_image, placeholder:"選択されていません" %>
+ <%= f.attachment_field :profile_image %>
+
+	<h4>ユーザーネーム</h4>
+    <%= f.text_field :name%>
+
+    <h4>自己紹介</h4>
+    <%= f.text_area :introduction %>
+
+    <%= f.submit 'プロフィールを更新する！' %>
+ <% end %>
