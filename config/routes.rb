@@ -12,9 +12,10 @@ devise_for :users, controllers: {
   registrations: 'users/registrations'
 }
 
-root to: "posts#index"
+ root to: "posts#index"
 
-resources :users
-resources :posts
-
+ resources :users
+ resources :posts do
+	resources :post_comments
+ end
 end
