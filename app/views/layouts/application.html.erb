@@ -10,6 +10,7 @@
   </head>
 
 <header>
+<% if user_signed_in? %>
 
 <li><%= link_to "マイページ", user_path(current_user)  %></li>
 <li><%= link_to "みんなの投稿", root_path  %></li>
@@ -17,7 +18,12 @@
 <li><%= link_to "declutterとは", "#"  %></li>
 <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete  %></li>
 
+<% else %>
 
+<li><%= link_to "ログイン", new_user_session_path  %></li>
+<li><%= link_to "declutterとは", "#"  %></li>
+
+<% end %>
 
 </header>
 

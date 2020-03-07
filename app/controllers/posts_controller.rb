@@ -12,6 +12,8 @@ class PostsController < ApplicationController
 
 	def show
 		@post_comment = PostComment.new
+		@best_answer = @post.post_comments.find_by(best_answer: "true")
+
 	end
 
 	def create
@@ -40,6 +42,11 @@ class PostsController < ApplicationController
 		redirect_to root_path
 	end
 
+	def best_answer
+		@post =Post.find(params[:post_id])
+		@comment = PostComment.find(params[:post_comment_id])
+	end
+
 private
 
 	def set_post
@@ -49,6 +56,5 @@ private
 	def post_params
 		params.require(:post).permit(:title, :body, :post_image)
 	end
-
 
 end

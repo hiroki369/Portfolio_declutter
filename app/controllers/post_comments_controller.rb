@@ -8,6 +8,21 @@ class PostCommentsController < ApplicationController
 	end
 
 	def destroy
+		@post =Post.find(params[:post_id])
+		@comment = PostComment.find(params[:id])
+		@comment.destroy
+		redirect_to post_path(@post)
+	end
+
+	def authorize_best_answer
+		@post =Post.find(params[:post_id])
+		@comment = PostComment.find(params[:post_comment_id])
+		@comment.best_answer = true
+		if@comment.save
+		  redirect_to post_path(@post)
+		else
+		  render templete: "posts/show"
+		end
 	end
 
     private

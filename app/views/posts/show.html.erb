@@ -2,50 +2,71 @@
 
 
 
- <%= attachment_image_tag @post, :post_image, :fill, 200, 200, format: "", fallback: "no_image.jpg" %><br>
+<!-- 投稿一覧 -->
+<%= attachment_image_tag @post, :post_image, :fill, 200, 200, format: "", fallback: "no_image.jpg" %><br>
+<h1>ユーザー名</h1>
+<%= @post.user.name %>
 <h1>タイトル</h1>
 <%= @post.title %>
-
 <h1>本文</h1>
 <%= @post.body %>
 
 <br>
 <% if @post.user == current_user %>
-<%=link_to "投稿を編集する", edit_post_path(@post) %><br>
-<%=link_to "投稿を削除する", post_path(@post), method: :delete, data: { confirm:'本当に削除しますか？'} %>
+    <%=link_to "投稿を編集する", edit_post_path(@post) %><br>
+    <%=link_to "投稿を削除する", post_path(@post), method: :delete, data: { confirm:'本当に削除しますか？'} %>
 <% end %>
 
-<h1>みんなのコメント表示</h1>
+
 
 <!-- コメント一覧 -->
 
-<% @post.post_comments.each do |post_comment| %>
-<table>
-<td><%= attachment_image_tag post_comment.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size: '40x40'%></td>
-    <% if post_comment.dispose == true %>
-    <td>思い切って捨てよう！</td>
-    <% else %>
-    <td>捨てないで！</td>
-    <% end %>
 
-</table>
+<% if @best_answer.present? %>
+    <h1>ベストアンサー！！</h1>
+    <%= @best_answer.user.name %>
+    <%= @best_answer.body %>
+<% else %>
+    <% @post.post_comments.each do |post_comment| %>
+        <table>
+          <td><%= attachment_image_tag post_comment.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size: '40x40'%></td>
+              <% if post_comment.dispose == true %>
+                  <td>思い切って捨てよう！</td>
+              <% else %>
+                  <td>捨てないで！</td>
+              <% end %>
 
+        </table>
 
+<!--コメント一覧はパーシャルにする-->
+        <td><%= post_comment.user.name %></td>
+        <td><%= post_comment.body %></td>
+        <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
 
-<td><%= post_comment.user.name %></td>
-<td><%= post_comment.body %></td>
-<td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
-<% end %>
+          <% if post_comment.post.user == current_user %>
+           <td><%= link_to "ベストアンサー認定", post_post_comment_post_best_answer_path(post_comment.post_id,post_comment.id) %></td>
+          <% end %>
+
+        <% if post_comment.user == current_user %>
+            <td><%= link_to "コメントを削除する", post_post_comment_path(post_comment.post_id,post_comment.id), method: :delete  %></td>
+        <% end %>
 
 
 <!-- コメント投稿フォーム -->
+          <% if  @post.user != current_user %>
+              <%= form_for [@post, @post_comment] do |f| %>
+                     <%= f.radio_button :dispose,true, checked:true %>思い切って捨てよう！<br>
+                    <%= f.radio_button :dispose,false %>捨てないで！<br>
+                <h1>その理由は？</h1>
+                    <%= f.text_area :body, rows:'5', class: "form-control",placeholder: "コメントを入力" %>
+                     <%= f.submit "投稿する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+               <% end %>
+          <% else %>
 
-          <%= form_for [@post, @post_comment] do |f| %>
-          <%= f.radio_button :dispose,true, checked:true %>思い切って捨てよう！<br>
-          <%= f.radio_button :dispose,false %>捨てないで！<br>
-              <%= f.text_area :body, rows:'5', class: "form-control",placeholder: "コメントを入力" %>
-          <%= f.submit "投稿する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+                <br><h1>投稿者本人はコメントできません。BAを選びましょう！</h1>
           <% end %>
-
+    <% end %>
+<% end %>
+<br>
 
 <%= link_to "戻る", root_path %>

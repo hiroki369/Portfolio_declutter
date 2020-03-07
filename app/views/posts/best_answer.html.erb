@@ -1,0 +1,6 @@
+
+<%= @comment.user.name  %>さんの回答をベストアンサーに認定しますか？<br>
+
+
+<%= link_to "認定する！", post_post_comment_best_answer_path, method: :patch %><br>
+<%= link_to "やめる", post_path(@post) %>
