@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		@users = User.all
+		@users = User.all.order(best_answer_count:"DESC")
 	end
 
 	def show
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
 	def update
 		if @user.update(user_params)
-		redirect_to user_path(@user)
+		　　redirect_to user_path(@user)
 		else render :edit
 	    end
 	end

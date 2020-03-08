@@ -3,7 +3,7 @@
 
 
 <!-- 投稿一覧 -->
-<%= attachment_image_tag @post, :post_image, :fill, 200, 200, format: "", fallback: "no_image.jpg" %><br>
+<%= attachment_image_tag @post, :post_image, :fill, 200, 200, format: "", fallback: "noimage.jpg" %><br>
 <h1>ユーザー名</h1>
 <%= @post.user.name %>
 <h1>タイトル</h1>
@@ -29,7 +29,7 @@
 <% else %>
     <% @post.post_comments.each do |post_comment| %>
         <table>
-          <td><%= attachment_image_tag post_comment.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size: '40x40'%></td>
+          <td><%= attachment_image_tag post_comment.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "noimage.jpg", size: '40x40'%></td>
               <% if post_comment.dispose == true %>
                   <td>思い切って捨てよう！</td>
               <% else %>
@@ -50,7 +50,7 @@
         <% if post_comment.user == current_user %>
             <td><%= link_to "コメントを削除する", post_post_comment_path(post_comment.post_id,post_comment.id), method: :delete  %></td>
         <% end %>
-
+    <% end %>
 
 <!-- コメント投稿フォーム -->
           <% if  @post.user != current_user %>
@@ -66,7 +66,7 @@
                 <br><h1>投稿者本人はコメントできません。BAを選びましょう！</h1>
           <% end %>
     <% end %>
-<% end %>
+
 <br>
 
 <%= link_to "戻る", root_path %>
