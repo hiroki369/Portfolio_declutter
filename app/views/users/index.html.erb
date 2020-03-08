@@ -1,7 +1,13 @@
 ユーザーランキング表示ページ
+BA獲得数が同数の場合、UserID順に並ぶ。
 
-<% @users.each do |user| %>
-    <%= link_to user_path(user) do  %>
-  	  <li><%= user.name  %></li>
-    <% end %>
+
+<% @users.each.with_index(1) do |user,rank| %>
+
+    	<li>BA獲得数<%= rank  %>位
+    	<%= user.best_answer_count %>件
+		<%= link_to user_path(user) do  %>
+  	  <%= user.name  %></li>
+ 		<% end %>
+
 <% end %>
