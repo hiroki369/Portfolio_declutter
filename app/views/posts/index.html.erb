@@ -14,8 +14,16 @@
           <%= link_to post_path(post) do  %>
              <%= attachment_image_tag post, :post_image, :fill, 100,100, format:"", fallback:"" %>
           <% end %>
-    <p>いいねの数表示</p>
-    <p>コメントの数表示</p>
+      <table>
+      <tr>
+       <td>いいねの数表示</td>
+       </tr>
+       <tr>
+       <td>コメント<%= post.post_comments.count %>件</td>
+       </tr>
+    <p></p>
     <p>BAの有無表示</p>
+</tr>
+</table>
 
 <% end %>
