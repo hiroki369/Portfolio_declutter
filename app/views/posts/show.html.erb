@@ -1,4 +1,7 @@
-<h1>投稿者の捨てるか迷ってるもの詳細</h1>
+  <head>
+    <meta charset="utf-8">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+  </head>
 
 
 
@@ -10,6 +13,12 @@
 <%= @post.title %>
 <h1>本文</h1>
 <%= @post.body %>
+
+<br>
+<!-- いいね機能非同期 -->
+<span id="favorite_button_<%= @post.id %>">
+          <%= render 'layouts/favorite',post: @post %>
+  </span>
 
 <br>
 <% if @post.user == current_user %>

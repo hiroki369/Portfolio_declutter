@@ -1,6 +1,5 @@
 ユーザーの詳細表示
-
-<h1>現在のランキング〇〇位</h1>
+<br>
 <%= attachment_image_tag @user, :profile_image, :fill, 100,100, format:"", fallback:"noimage.jpg", size:'100x100' %><br>
 
 <li>ユーザーネーム
@@ -16,9 +15,18 @@
 <h4>退会するボタン作る</h4>
 <% end %>
 
-<li>フォロー人数</li>
-<li>フォロワー人数</li>
-<li>ベストアンサー<%= @user.best_answer_count%>件獲得！</li>
+<li>フォロー人数
+<%= link_to user_follow_path(@user) do  %>
+<%= @user.followings.count %>人</li>
+<% end %>
+
+<li>フォロワー人数
+<%= link_to user_follower_path(@user) do  %>
+	<%= @user.followed.count %>人</li>
+<% end %>
+<li>総ベストアンサー数<%= @user.best_answer_count%>件</li>
+<li>現在のランキング〇〇位</li>
+<span><%= render 'layouts/follow_btn', user: @user  %></span>
 
 
 <%= link_to "新規投稿する", new_post_path  %><br>
