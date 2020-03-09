@@ -12,4 +12,9 @@ class Post < ApplicationRecord
 	def best_answerd?(post)
 		post_comments.find_by(best_answer: true).present?
 	end
+	def self.search(search)
+		return Post.all unless search
+		Post.where("title LIKE?","%#{search}%")
+	end
 end
+
