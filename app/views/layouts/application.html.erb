@@ -12,6 +12,15 @@
 <header>
 <% if user_signed_in? %>
 
+<li><%= form_tag(search_result_path,:method => 'get',class:'navbar-form') do %>
+          <%= text_field_tag :search, nil, :placeholder => 'ワードで検索！' %>
+          <%= hidden_field_tag :target, "post"  %>
+          <%= submit_tag 'Search', :name => nil %>
+    <% end %>
+
+
+
+
 <li><%= link_to "マイページ", user_path(current_user)  %></li>
 <li><%= link_to "みんなの投稿", root_path  %></li>
 <li><%= link_to "ユーザーランキング", users_path  %></li>
