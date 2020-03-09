@@ -23,7 +23,8 @@ devise_for :users, controllers: {
     end
  end
 
-
-
+resources :relationships, only: [:create, :destroy]
+get '/users/:id/follow/', to: 'users#follow', :as => :user_follow
+get '/users/:id/follower/', to: 'users#follower', :as => :user_follower
 
 end

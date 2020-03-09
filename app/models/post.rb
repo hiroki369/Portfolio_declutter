@@ -8,4 +8,8 @@ class Post < ApplicationRecord
 	def favorited?(user)
 		favorites.where(user_id: user.id).exists?
 	end
+
+	def best_answerd?(post)
+		post_comments.find_by(best_answer: true).present?
+	end
 end

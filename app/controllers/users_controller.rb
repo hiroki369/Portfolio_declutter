@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-	before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+	before_action :set_user, only: [:show, :edit, :update, :follow, :follower]
 	before_action :authenticate_user!
 
 	def index
@@ -15,12 +14,18 @@ class UsersController < ApplicationController
 
 	def update
 		if @user.update(user_params)
-		　　redirect_to user_path(@user)
+		    redirect_to user_path(@user)
 		else render :edit
 	    end
 	end
 
 	def destroy
+	end
+
+	def follow
+	end
+
+	def follower
 	end
 
 

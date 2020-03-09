@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 before_action :configure_permitted_parameters, if: :devise_controller?
 
 
- def who_login
+ def who_login?
     if admin_signed_in?
       @header_login_name = "admin"
     else

@@ -1,0 +1,17 @@
+フォロワー一覧
+
+
+
+フォローされているユーザー一覧
+<table>
+<tr>
+<th></h1>Username</h1></th>
+</tr>
+<% @user.followers.each do |user| %>
+<tr>
+<td><%= user.name  %></td>
+</tr>
+
+</table>
+
+<% end %>
