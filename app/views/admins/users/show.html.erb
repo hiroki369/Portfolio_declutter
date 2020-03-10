@@ -1,0 +1,48 @@
+アドミン用ユーザー詳細表示ページ
+<h1>編集</h1>
+<%= link_to "ユーザー登録情報を編集する", admins_users_edit_path(@user) %>
+
+<br>
+<%= attachment_image_tag @user, :profile_image, :fill, 100,100, format:"", fallback:"noimage.jpg", size:'100x100' %><br>
+
+<li>ユーザーネーム
+<%= @user.name %>
+</li>
+<li>
+自己紹介
+<%= @user.introduction %><br>
+</li>
+
+<% if @user == current_user %>
+<%= link_to "登録情報編集", edit_user_path(@user)  %>
+<h4>退会するボタン作る</h4>
+<% end %>
+
+<li>フォロー人数
+<%= link_to user_follow_path(@user) do  %>
+<%= @user.followings.count %>人</li>
+<% end %>
+
+<li>フォロワー人数
+<%= link_to user_follower_path(@user) do  %>
+	<%= @user.followed.count %>人</li>
+<% end %>
+<li>総ベストアンサー数<%= @user.best_answer_count%>件</li>
+<li>現在のランキング〇〇位</li>
+
+
+
+
+<h1>自分の投稿一覧</h1>
+<% @user.posts.each do |post| %>
+
+<li>
+	<%= link_to post_path(post) do %>
+		<%= attachment_image_tag post, :post_image, :fill, 100,100, format:"", fallback:"noimage.jpg", size:'100x100' %>
+	<% end %>
+		<%= post.title %>
+		<%= post.body %>
+ベストアンサーカラムがtrueの場合、ベストアンサー認定済表示出す！
+</li>
+
+<% end %>

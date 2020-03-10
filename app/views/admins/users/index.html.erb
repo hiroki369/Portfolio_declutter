@@ -1,0 +1,10 @@
+アドミン用　ユーザー一覧表示ページ
+
+<% @users.each do |user|  %>
+<%= link_to admins_users_show_path(user) do  %>
+	<li><%= user.name  %></li>
+	<% end %>
+
+
+
+<% end %>
