@@ -21,6 +21,17 @@ before_action :configure_permitted_parameters, if: :devise_controller?
 
 
   def after_sign_in_path_for(resource)
-  	root_path
+  	case resource
+    when Admin
+      admins_path
+
+    when User
+      posts_path
+    end
   end
+
+  def after_sign_out_path_fot(resource)
+    root_path
+  end
+
 end

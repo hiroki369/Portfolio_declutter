@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update, :follow, :follower]
-	before_action :authenticate_user!
+
+
 
 	def index
 		@users = User.all.order(best_answer_count:"DESC")

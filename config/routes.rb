@@ -12,7 +12,21 @@ devise_for :users, controllers: {
   registrations: 'users/registrations'
 }
 
- root to: "posts#index"
+namespace  :admins do
+  get '/', to: 'users#top'
+  get '/users/', to: 'users#index'
+  get '/users/:id/', to: 'users#show', :as => :users_show
+  get '/users/:id/edit', to: 'users#edit', :as => :users_edit
+  patch '/users/:id/', to: 'users#update', :as => :users_update
+  get '/posts/', to: 'posts#index'
+  get '/posts/:id/', to: 'posts#show', :as => :posts_show
+  get '/posts/:id/edit', to: 'posts#edit', :as => :posts_edit
+  patch '/posts/:id/', to: 'posts#update', :as => :posts_update
+  delete '/posts/:id/', to: 'posts#destroy', :as => :posts_destroy
+end
+
+ root to: "tops#index"
+ get 'tops/about', to: 'tops#about'
 
  resources :users
  resources :posts do
