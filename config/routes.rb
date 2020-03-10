@@ -23,6 +23,7 @@ namespace  :admins do
   get '/posts/:id/edit', to: 'posts#edit', :as => :posts_edit
   patch '/posts/:id/', to: 'posts#update', :as => :posts_update
   delete '/posts/:id/', to: 'posts#destroy', :as => :posts_destroy
+  get '/search', to: 'searches#index', :as => :search_result
 end
 
  root to: "tops#index"

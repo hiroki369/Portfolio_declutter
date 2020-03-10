@@ -1,0 +1,43 @@
+  <head>
+    <meta charset="utf-8">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+  </head>
+
+
+<h1>検索結果</h1>
+
+<% @posts.each do |post| %>
+
+<br>
+<br>
+<br>
+<br>
+
+          <%= link_to admins_posts_show_path(post) do  %>
+             <%= attachment_image_tag post, :post_image, :fill, 100,100, format:"", fallback:"" %>
+          <% end %>
+      <table>
+        <tr>
+          <td><%= post.title %></td>
+        </tr>
+        <tr>
+          <% if post.best_answerd?(post) %>
+          <td>解決済み！
+          </td>
+          <% else %>
+          <tr>
+            <td>コメントを投稿してBAを獲得しよう！</td>
+          </tr>
+          <% end %>
+        </tr>
+      <tr>
+       <td><span class="fa fa-heart" aria-hidden="true" style="color: red;"></span> <%= post.favorites.count  %></td>
+       </tr>
+       <tr>
+       <td><i class="fa fa-comment" ></i> <%= post.post_comments.count %></td>
+       </tr>
+
+</tr>
+</table>
+
+<% end %>
