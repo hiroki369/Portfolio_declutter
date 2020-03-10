@@ -28,11 +28,15 @@
 
 
 
-<!-- コメント一覧 -->
 
-
-<% if @best_answer.present? %>
+  <% if @best_answer.present? %>
     <h1>ベストアンサー！！</h1>
+    <% if @best_answer.dispose == true %>
+     <h1>思い切って捨てよう！</h1>
+     <% else %>
+     <h1>捨てないで！</h1>
+  <% end %>
+
     <%= @best_answer.user.name %>
     <%= @best_answer.body %>
 <% else %>
@@ -44,7 +48,6 @@
               <% else %>
                   <td>捨てないで！</td>
               <% end %>
-
         </table>
 
 <!--コメント一覧はパーシャルにする-->
@@ -71,11 +74,10 @@
                      <%= f.submit "投稿する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
                <% end %>
           <% else %>
-
                 <br><h1>投稿者本人はコメントできません。BAを選びましょう！</h1>
           <% end %>
     <% end %>
 
 <br>
 
-<%= link_to "戻る", root_path %>
+<%= link_to "戻る", posts_path %>
