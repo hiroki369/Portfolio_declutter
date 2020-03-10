@@ -27,7 +27,12 @@
 <li><%= link_to "declutterとは", tops_about_path  %></li>
 <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete  %></li>
 
-<% else %>
+<% elsif admin_signed_in? %>
+<li><%= form_tag(admins_search_result_path,:method => 'get') do %>
+  <%= select_tag :target, options_for_select([["ユーザー","user"], ["投稿","post"]],:selected=>"user") %>
+  <%= text_field_tag :search, nil %>
+  <%= submit_tag 'Search', :name => nil %>
+<% end %>
 
 <li><%= link_to "管理者ログイン", new_admin_session_path  %></li>
 <li><%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete  %></li>
