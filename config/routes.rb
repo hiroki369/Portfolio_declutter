@@ -24,7 +24,8 @@ namespace  :admins do
   patch '/posts/:id/', to: 'posts#update', :as => :posts_update
   delete '/posts/:id/', to: 'posts#destroy', :as => :posts_destroy
   get '/search', to: 'searches#index', :as => :search_result
-  patch '/users/:id/', to: 'users#restore', :as => :users_restore
+  get '/users/:id/restore_confirmation', to: 'users#restore_confirmation', :as => :users_restore_confirm
+  patch '/users/:id/restore_confirmation', to: 'restore_confirmations#restore', :as => :users_restore
 end
 
 

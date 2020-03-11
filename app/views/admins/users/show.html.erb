@@ -1,15 +1,13 @@
 アドミン用ユーザー詳細表示ページ
 <h1>編集</h1>
 
-<!-- アップデートのコントローラーを呼び出してしまっている -->
+
 <% if @user.deleted? %>
-<%= form_for(@user, url: {controller: "admins/users", action: "restore"}) do |f| %>
-<%= f.hidden_field :user, :value => @user %>
-<%= f.submit "ユーザー復元する", data: {confirm: "本当に復元しますか？"}  %>
+
+
+<%= link_to "復元する", admins_users_restore_confirm_path(@user) %>
 <% end %>
 
-<%= link_to "ユーザーを復元する", {controller: :users, action: :restore, method: :patch}, data: { confirm: '本当に復元しますか？'}  %>
-<% end %>
 
 
 <br>

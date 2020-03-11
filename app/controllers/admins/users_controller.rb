@@ -1,5 +1,5 @@
 class Admins::UsersController < ApplicationController
-	before_action :set_user, only: [:show, :edit, :update]
+	before_action :set_user, only: [:show, :edit, :update, :restore_confirmation]
 	before_action :authenticate_admin!
 
 	def top
@@ -24,12 +24,11 @@ class Admins::UsersController < ApplicationController
 		end
 	end
 
-	def close
+	def restore_confirmation
 	end
 
 	def restore
 		@user.restore(user_params)
-		binding.pry
 		redirect_to admins_users_show_path(@user)
 	end
 
