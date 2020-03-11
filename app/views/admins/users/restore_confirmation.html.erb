@@ -1,0 +1,6 @@
+本当に復元しますか？
+
+<%= form_for(@user, url: {controller: "admins/restore_confirmations", action: "restore"}) do |f| %>
+<%= f.hidden_field :user, :value => @user %>
+<%= f.submit "ユーザー復元する" %>
+<% end %>

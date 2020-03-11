@@ -1,13 +1,14 @@
 class Admins::UsersController < ApplicationController
-	before_action :set_user, only: [:show, :edit, :update]
+	before_action :set_user, only: [:show, :edit, :update, :restore_confirmation]
 	before_action :authenticate_admin!
 
 	def top
 	end
 
 	def index
-		@users = User.all
+		@users = User.all.with_deleted
 	end
+
 
 	def show
 	end
@@ -23,10 +24,12 @@ class Admins::UsersController < ApplicationController
 		end
 	end
 
-	def close
+	def restore_confirmation
 	end
 
-	def reopen
+	def restore
+		@user.restore(user_params)
+		redirect_to admins_users_show_path(@user)
 	end
 
 
@@ -35,7 +38,8 @@ class Admins::UsersController < ApplicationController
 		params.require(:user).permit(:name, :introduction, :profile_image)
 	end
 
+
 	def set_user
-    	@user = User.find(params[:id])
+    	@user = User.with_deleted.find(params[:id])
     end
 end

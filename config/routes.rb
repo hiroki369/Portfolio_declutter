@@ -24,7 +24,10 @@ namespace  :admins do
   patch '/posts/:id/', to: 'posts#update', :as => :posts_update
   delete '/posts/:id/', to: 'posts#destroy', :as => :posts_destroy
   get '/search', to: 'searches#index', :as => :search_result
+  get '/users/:id/restore_confirmation', to: 'users#restore_confirmation', :as => :users_restore_confirm
+  patch '/users/:id/restore_confirmation', to: 'restore_confirmations#restore', :as => :users_restore
 end
+
 
  root to: "tops#index"
  get 'tops/about', to: 'tops#about'
@@ -37,6 +40,8 @@ end
 	patch 'best_answer', to: 'post_comments#authorize_best_answer'
     end
  end
+
+get 'users/:id/destroy_confirmation', to: 'users#confirm', :as => :users_destroy_confirm
 
 resources :relationships, only: [:create, :destroy]
 get '/users/:id/follow/', to: 'users#follow', :as => :user_follow

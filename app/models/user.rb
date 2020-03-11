@@ -39,5 +39,6 @@ def self.search(search)
     User.where("name LIKE?","%#{search}%")
 end
 
+acts_as_paranoid
 
 end

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :set_user, only: [:show, :edit, :update, :follow, :follower]
+	before_action :set_user, only: [:show, :edit, :update, :destroy, :confirm, :follow, :follower]
 
 
 
@@ -21,6 +21,8 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
+		@user.destroy
+		redirect_to root_path
 	end
 
 	def follow
@@ -29,6 +31,8 @@ class UsersController < ApplicationController
 	def follower
 	end
 
+	def confirm
+	end
 
 
 private
