@@ -50,14 +50,15 @@
               <% end %>
         </table>
 
-<!--コメント一覧はパーシャルにする-->
-<span id="comments_<%= @post.id %>">
+<!--コメント一覧非同期-->
+<span id="comments_<%= post_comment.id %>">
        <%= render'layouts/comments',post_comment: post_comment %>
-
+         </span>
     <% end %>
-  </span>
+<span id="comments_blank">
+</span>
 
-<!-- コメント投稿フォーム -->
+<!-- コメント投稿フォームも非同期にする -->
 
 <% if @post.posted?(current_user) %><br>
 これ以上投稿できません。以前の投稿を削除して再度投稿してください。
