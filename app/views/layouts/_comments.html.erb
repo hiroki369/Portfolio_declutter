@@ -1,0 +1,11 @@
+        <td><%= post_comment.user.name %></td>
+        <td><%= post_comment.body %></td>
+        <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+
+          <% if post_comment.post.user == current_user %>
+           <td><%= link_to "ベストアンサー認定", post_post_comment_post_best_answer_path(post_comment.post_id,post_comment.id) %></td>
+          <% end %>
+
+        <% if post_comment.user == current_user %>
+            <td><%= link_to "コメントを削除する", post_post_comment_path(post_comment.post_id,post_comment.id), method: :delete  %></td>
+        <% end %>
