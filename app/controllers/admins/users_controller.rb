@@ -27,11 +27,6 @@ class Admins::UsersController < ApplicationController
 	def restore_confirmation
 	end
 
-	def restore
-		@user.restore(user_params)
-		redirect_to admins_users_show_path(@user)
-	end
-
 
 	private
 	def user_params

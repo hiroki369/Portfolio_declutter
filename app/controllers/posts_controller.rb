@@ -14,7 +14,6 @@ class PostsController < ApplicationController
 	def show
 		@post_comment = PostComment.new
 		@best_answer = @post.post_comments.find_by(best_answer: "true")
-
 	end
 
 	def create

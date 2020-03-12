@@ -16,5 +16,9 @@ class Post < ApplicationRecord
 		return Post.all unless search
 		Post.where("title LIKE?","%#{search}%")
 	end
+
+	def posted?(user)
+		post_comments.where(user_id: user.id).exists?
+	end
 end
 
