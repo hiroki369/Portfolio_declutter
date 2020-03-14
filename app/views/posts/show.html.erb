@@ -40,14 +40,6 @@
     <%= @best_answer.body %>
 <% else %>
     <% @post.post_comments.each do |post_comment| %>
-        <table>
-          <td><%= attachment_image_tag post_comment.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "noimage.jpg", size: '40x40'%></td>
-              <% if post_comment.dispose == true %>
-                  <td>思い切って捨てよう！</td>
-              <% else %>
-                  <td>捨てないで！</td>
-              <% end %>
-        </table>
 
 <!--コメント一覧非同期-->
 <span id="comments_<%= post_comment.id %>">
@@ -59,10 +51,9 @@
 <% end %>
 
 <!-- コメント投稿フォームも非同期にする -->
-<span id="comments_form_<%= @post_comment.id %>">
-<%= render'layouts/comments_form',post: @post,post_comment: @post_comment %>
+<span id="comments_form">
+  <%= render'layouts/comments_form',post: @post,post_comment: @post_comment %>
 </span>
-<span id="comments_form_blank"></span>
 <br>
 
 <%= link_to "戻る", posts_path %>
