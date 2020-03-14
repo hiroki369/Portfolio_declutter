@@ -28,53 +28,32 @@
 
 
 
-
   <% if @best_answer.present? %>
     <h1>ベストアンサー！！</h1>
     <% if @best_answer.dispose == true %>
      <h1>思い切って捨てよう！</h1>
-     <% else %>
+    <% else %>
      <h1>捨てないで！</h1>
-  <% end %>
+    <% end %>
 
     <%= @best_answer.user.name %>
     <%= @best_answer.body %>
 <% else %>
     <% @post.post_comments.each do |post_comment| %>
-        <table>
-          <td><%= attachment_image_tag post_comment.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "noimage.jpg", size: '40x40'%></td>
-              <% if post_comment.dispose == true %>
-                  <td>思い切って捨てよう！</td>
-              <% else %>
-                  <td>捨てないで！</td>
-              <% end %>
-        </table>
 
 <!--コメント一覧非同期-->
 <span id="comments_<%= post_comment.id %>">
-       <%= render'layouts/comments',post_comment: post_comment %>
-         </span>
-    <% end %>
-<span id="comments_blank">
+  <%= render'layouts/comments',post_comment: post_comment %>
 </span>
+    <% end %>
+<span id="comments_blank"></span>
+
+<% end %>
 
 <!-- コメント投稿フォームも非同期にする -->
-
-<% if @post.posted?(current_user) %><br>
-これ以上投稿できません。以前の投稿を削除して再度投稿してください。
-          <% elsif  @post.user != current_user %>
-              <%= form_with model: [@post, @post_comment] do |f| %>
-                     <%= f.radio_button :dispose,true, checked:true %>思い切って捨てよう！<br>
-                    <%= f.radio_button :dispose,false %>捨てないで！<br>
-                <h1>その理由は？</h1>
-                    <%= f.text_area :body, rows:'5', class: "form-control",placeholder: "コメントを入力" %>
-                     <%= f.submit "投稿する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-               <% end %>
-          <% else %>
-                <br><h1>投稿者本人はコメントできません。BAを選びましょう！</h1>
-          <% end %>
-    <% end %>
-
+<span id="comments_form">
+  <%= render'layouts/comments_form',post: @post,post_comment: @post_comment %>
+</span>
 <br>
 
 <%= link_to "戻る", posts_path %>

@@ -1,6 +1,22 @@
+      <table>
+          <td><%= attachment_image_tag post_comment.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "noimage.jpg", size: '40x40'%></td>
+              <% if post_comment.dispose == true %>
+                  <td>思い切って捨てよう！</td>
+              <% else %>
+                  <td>捨てないで！</td>
+              <% end %>
+        </table>
+    <table>
+    <tr>
         <td><%= post_comment.user.name %></td>
+    </tr>
+    <tr>
         <td><%= post_comment.body %></td>
+    </tr>
+    <tr>
         <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+    </tr>
+    </table>
 
           <% if post_comment.post.user == current_user %>
            <td><%= link_to "ベストアンサー認定", post_post_comment_post_best_answer_path(post_comment.post_id,post_comment.id) %></td>

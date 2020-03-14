@@ -1,2 +1,6 @@
 
 $('#comments_<%= @comment.id %>').html("");
+$('#comments_form_blank<%= @comment.id %>').html("");
+
+$('#comments_form').html("<%= j(render partial: 'layouts/comments_form',locals: {post_comment: @comment,post: @post}) %>")
+$('textarea').val("");
