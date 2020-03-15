@@ -26,6 +26,7 @@
 <li><%= link_to "ユーザーランキング", users_path  %></li>
 <li><%= link_to "declutterとは", tops_about_path  %></li>
 <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete  %></li>
+<li><%= link_to "通知", notifications_path(current_user)  %></li>
 
 <% elsif admin_signed_in? %>
 <li><%= form_tag(admins_search_result_path,:method => 'get') do %>
@@ -45,7 +46,9 @@
 
 
   <body>
+
     <%= yield %>
     <%= notice %>
+
   </body>
 </html>

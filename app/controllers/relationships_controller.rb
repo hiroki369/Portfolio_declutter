@@ -4,7 +4,8 @@ class RelationshipsController < ApplicationController
 	def create
 		user = User.find(params[:follow_id])
 		if current_user.follow(user)
-			redirect_to user_path(user)
+			user.create_notification_follow(current_user)
+			 redirect_to user_path(user)
 		else
 			redirect_to user_path(user)
 		end

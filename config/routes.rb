@@ -50,4 +50,6 @@ get '/users/:id/follower/', to: 'users#follower', :as => :user_follower
 
 get '/search', to: 'searches#index', :as => :search_result
 
+resources :notifications, only: :index
+
 end
