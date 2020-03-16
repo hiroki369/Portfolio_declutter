@@ -1,5 +1,6 @@
 ユーザー登録情報編集画面
-
+<%= notice %>
+<%= render 'layouts/errors', obj: @user %>
 
 <%= link_to "退会する", users_destroy_confirm_path  %>
 

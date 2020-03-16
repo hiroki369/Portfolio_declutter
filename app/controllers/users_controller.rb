@@ -2,9 +2,11 @@ class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update, :destroy, :confirm, :follow, :follower]
 
 
-
 	def index
 		@users = User.all.order(best_answer_count:"DESC")
+		@ranks = @users.map{ |rank| rank[:id]}
+		@my_rank = @ranks.find_index(current_user.id) + 1
+
 	end
 
 	def show
@@ -15,14 +17,14 @@ class UsersController < ApplicationController
 
 	def update
 		if @user.update(user_params)
-		    redirect_to user_path(@user)
+		    redirect_to user_path(@user),notice: "ユーザー情報が更新されました！"
 		else render :edit
 	    end
 	end
 
 	def destroy
 		@user.destroy
-		redirect_to root_path
+		redirect_to root_path,notice: "正常に退会できました。"
 	end
 
 	def follow
