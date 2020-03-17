@@ -10,7 +10,8 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery3
+//= require popper
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
@@ -23,5 +24,5 @@ $(function() {
 	},500);
 	setTimeout(function(){
 		$('.start').fadeOut(500);
-	},2500);
+	},100);
 });

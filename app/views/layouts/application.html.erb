@@ -10,38 +10,44 @@
   </head>
 
 <header>
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+        <h2><%= link_to "Declutter",root_path,class:'navbar-brand' %></h2>
 
-  <nav class ="nav navbar navbar-fixed-top">
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
-          <li><%= form_tag(search_result_path,:method => 'get',class:'navbar-form') do %>
-                  <%= text_field_tag :search, nil, :placeholder => '投稿を検索！' %>
-                  <%= hidden_field_tag :target, "post"  %>
-                  <%= submit_tag 'Search', :name => nil %>
-              <% end %>
-          </li>
-          <li><%= link_to "マイページ", user_path(current_user)  %></li>
-          <li><%= link_to "タイムライン", posts_path  %></li>
-          <li><%= link_to "ユーザーランキング", users_path  %></li>
+          <li><%= link_to "Mypage", user_path(current_user)  %></li>
+          <li><%= link_to "Posts", posts_path  %></li>
+          <li><%= link_to "User ranking", users_path  %></li>
           <li><%= link_to "declutterとは", tops_about_path  %></li>
-          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete  %></li>
-          <li><%= link_to "通知", notifications_path(current_user)  %></li>
+          <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
+          <li><%= link_to "Notifications", notifications_path(current_user)  %></li>
       <% elsif admin_signed_in? %>
           <li><%= form_tag(admins_search_result_path,:method => 'get') do %>
                 <%= select_tag :target, options_for_select([["ユーザー","user"], ["投稿","post"]],:selected=>"user") %>
                 <%= text_field_tag :search, nil %>
                 <%= submit_tag 'Search', :name => nil %></li>
               <% end %>
-          <li><%= link_to "管理者ログイン", new_admin_session_path  %></li>
-          <li><%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete  %></li>
-          <li><%= link_to "ログイン", new_user_session_path  %></li>
+          <li><%= link_to "Admin login", new_admin_session_path  %></li>
+          <li><%= link_to "Admin logout", destroy_admin_session_path, method: :delete  %></li>
+          <li><%= link_to "User login", new_user_session_path  %></li>
           <li><%= link_to "declutterとは", tops_about_path  %></li>
       <% else %>
-          <li><%= link_to "ゲストログイン", "# " %></li>
-          <li><%= link_to "ログイン", new_user_session_path  %></li>
-          <li><%= link_to "管理者ログイン", new_admin_session_path  %></li>
-
+      <ul class="navbar-nav navbar-right">
+        <li class="nav-item dropdown">
+         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+           Menu
+         </a>
+         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+           <a class="dropdown-item" href="#">Guest login</a>
+           <a class="dropdown-item" href="/users/sign_in">User login</a>
+           <a class="dropdown-item" href="/admins/sign_in">Admin login</a>
+         </div>
+        </li>
+      </ul>
       <% end %>
+    </ul>
+  </div>
 
     </ul>
    </nav>
