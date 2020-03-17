@@ -1,14 +1,14 @@
 class PostsController < ApplicationController
 	before_action :authenticate_user!
 	before_action :set_post, only: [:show, :edit, :update, :destroy]
-
+	PER = 5
 
 	def new
 		@post = Post.new
 	end
 
 	def index
-		@posts = Post.all
+		@posts = Post.all.page(params[:page]).per(PER)
 	end
 
 	def show

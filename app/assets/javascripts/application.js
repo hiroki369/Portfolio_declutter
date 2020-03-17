@@ -16,3 +16,12 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(function() {
+	setTimeout(function(){
+		$('.start h1').fadeIn(1600);
+	},500);
+	setTimeout(function(){
+		$('.start').fadeOut(500);
+	},2500);
+});
