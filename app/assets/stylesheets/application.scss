@@ -15,3 +15,88 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+
+
+
+body{font-family: 'Oswald', sans-serif;}
+
+body {
+  background-image: url('/assets/images/whitewall.jpg');
+  padding-top: 70px;
+}
+
+h1.title{
+  text-align: center;
+  font-size: 800%;
+}
+
+p.explanation{
+  text-align: center;
+  font-size: 200%;
+}
+
+.howtouse{
+  margin-top: 80px;
+  font-size: 500%;
+  text-align: center;
+}
+
+div.step1{
+  height: 300px;
+  width: 300px;
+  background-image: url('/assets/images/step1.jpg');
+  background-size: cover;
+}
+
+p.step-comment{
+  font-size: 330%;
+}
+
+div.step2{
+  height: 300px;
+  width: 300px;
+  background-image: url('/assets/images/step2.jpg');
+  background-size: cover;
+}
+
+div.step3{
+  height: 300px;
+  width: 300px;
+  background-image: url('/assets/images/step3.jpg');
+  background-size: cover;
+}
+
+h1.function_explanation{
+  margin-top: 100px;
+  margin-bottom: 50px;
+  text-align: center;
+  font-size: 500%;
+
+}
+
+p.explain_servise{
+  text-align: center;
+  font-size: 190%;
+}
+
+.start {
+  background: #FFF;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 9000;
+  }
+
+.start h1 {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  z-index: 9999;
+  width: 900px;
+  font-size: 2000%;
+}
