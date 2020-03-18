@@ -24,10 +24,15 @@
   <% end %>
 
   <div class="text-center">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in", class:"btn-outline-secondary" %>
   </div>
+
+  <div class="text-center padding-top">
+    <p>or</p>
+  </div>
+
+  <div class="text-center">
+    <%= link_to "Sign up now!", new_user_registration_path, class:"btn btn-outline-info" %>
 <% end %>
 
-<br>
-<%= render "users/shared/links", class:"text-center" %>
 </div>

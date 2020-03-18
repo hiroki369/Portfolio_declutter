@@ -16,12 +16,31 @@
 
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
-          <li><%= link_to "Mypage", user_path(current_user)  %></li>
-          <li><%= link_to "Posts", posts_path  %></li>
-          <li><%= link_to "User ranking", users_path  %></li>
-          <li><%= link_to "declutterとは", tops_about_path  %></li>
-          <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
-          <li><%= link_to "Notifications", notifications_path(current_user)  %></li>
+      <ul class="navbar-nav navbar-right">
+        <li class="nav-item dropdown">
+         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+           User menu
+         </a>
+         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+           <li class="dropdown-item"><%= link_to"Mypage",user_path(current_user) %></li>
+           <li class="dropdown-item"><%= link_to "User ranking", users_path  %></li>
+           <li class="dropdown-item"><%= link_to "Notifications", notifications_path(current_user)  %></li>
+           <li class="dropdown-item"><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
+        </ul>
+       </li>
+     </ul>
+     <ul class="navbar-nav navbar-right">
+        <li class="nav-item dropdown">
+     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+           Post menu
+         </a>
+         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li class="dropdown-item"><%= link_to "Posts", posts_path  %></li>
+          <li class="dropdown-item"><%= link_to "New post", new_post_path %></li>
+        </ul>
+      </li>
+    </ul>
+      </ul>
       <% elsif admin_signed_in? %>
           <li><%= form_tag(admins_search_result_path,:method => 'get') do %>
                 <%= select_tag :target, options_for_select([["ユーザー","user"], ["投稿","post"]],:selected=>"user") %>
@@ -60,8 +79,8 @@
     <footer>
         <nav class ="nav navbar navbar">
            <div class="container-fluid">
-             <ul class="nav navbar">
-              <li>All Right resreved</li>
+             <ul class="nav navbar-fixed-bottom">
+              <li>All Right resreved by Declutter</li>
             </ul>
           </div>
         </nav>
