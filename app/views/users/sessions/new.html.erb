@@ -1,4 +1,4 @@
-
+    <head><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" ></head>
 
 <div class="container">
   <div class="row">
@@ -34,5 +34,10 @@
   <div class="text-center">
     <%= link_to "Sign up now!", new_user_registration_path, class:"btn btn-outline-info" %>
 <% end %>
-
+  </div>
+  <br>
+  <div class ="facebook text-center">
+    Sign up with<br>
+    <%= link_to "Facebook", user_facebook_omniauth_authorize_path ,class:"btn btn-info" %>
+  </div>
 </div>

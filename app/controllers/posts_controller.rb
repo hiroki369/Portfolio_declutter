@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 	before_action :authenticate_user!
 	before_action :set_post, only: [:show, :edit, :update, :destroy]
-	PER = 5
+	PER =5
 
 	def new
 		@post = Post.new

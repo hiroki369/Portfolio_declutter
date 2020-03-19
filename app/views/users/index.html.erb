@@ -1,17 +1,32 @@
-<h1>オールタイムランキング</h1>
+<div class ="container" >
+	<div class ="row">
+		<div class ="col-lg-12 text-center">
+			<h1>Bestanswer Ranking</h1>
+			  <h4>あなたのランキングは<%= @users.count %>人中<%= @my_rank %>位です</h4>
 
 
-あなたのランキングは
-<%= @users.count %>人中
-<%= @my_rank  %>位
-です
+
+<table class="table table">
+	<thead>
+    <tr>
+      <th>Rank</th>
+	  <th>Bestanswer 獲得数</th>
+	  <th>User name</th>
+    </tr>
+   </thead>
+<tbody>
 
 <% @users.each.with_index(1) do |user,rank| %>
-    	<li>BA獲得数<%= rank  %>位
-    	<%= user.best_answer_count %>件
-		<%= link_to user_path(user) do  %>
-  	  <%= user.name  %></li>
- 		<% end %>
 
+<tr>
+    	<td><%= rank  %>位</td>
+    	<td><%= user.best_answer_count %>件</td>
+		<td><%= link_to user_path(user) do  %>
+  	    <%= user.name  %></td>
+  	    <% end %>
+</tr>
 
 <% end %>
+
+</table>
+

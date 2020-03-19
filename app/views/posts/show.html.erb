@@ -5,42 +5,59 @@
 
 
 
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="col-lg-12 text-center">
+    <div class="col-lg-6">
       <h1>Posted by <%= @post.user.name %></h1>
-             <%= attachment_image_tag @post, :post_image, :fill, 700, 500, format: "", fallback: "noimage.jpg" %><br>
+             <%= attachment_image_tag @post, :post_image, :fill, 700, 500, format: "", fallback: "noimage.jpg",class:"rounded" %>
+    </div>
+  <div class ="col-lg-3 offset-md-2 mt-5">
 <h4>Title</h4>
-<%= @post.title %>
+<p><%= @post.title %></p>
 <h4>Introduction</h4>
-<%= @post.body %>
+<p><%= @post.body %></p>
 
-<br>
+
 <!-- いいね機能非同期 -->
 <span id="favorite_button_<%= @post.id %>">
           <%= render 'layouts/favorite',post: @post %>
   </span>
 
 <br>
-<% if @post.user == current_user %>
-    <%=link_to "投稿を編集する", edit_post_path(@post) %><br>
-    <%=link_to "投稿を削除する", post_path(@post), method: :delete, data: { confirm:'本当に削除しますか？'} %>
-<% end %>
+  <table>
+      <tr>
+         <td>
+            <% if @post.user == current_user %>
+               <%=link_to "Edit", edit_post_path(@post),class:"btn btn-sm btn-secondary" %>
+               <%=link_to "Delete", post_path(@post), method: :delete, data: { confirm:'本当に削除しますか？'},class:"btn btn-sm btn-danger" %>
+            <% end %>
+         </td>
+      </tr>
+  </table>
 </div>
 
 
+<div class="col-lg-12 mt-">
+  <h1>Comments</h1>
+      <% if @best_answer.present? %>
+            <h1 class="mt-2">Bestanswer</h1>
+           <% if @best_answer.dispose == true %>
+            <h3>思い切って捨てよう！</h3>
+           <% else %>
+          <h3>捨てないで！</h3>
+         <% end %>
 
-<div class="col-lg-12 text-center">
-  <% if @best_answer.present? %>
-    <h1>ベストアンサー！！</h1>
-    <% if @best_answer.dispose == true %>
-     <h1>思い切って捨てよう！</h1>
-    <% else %>
-     <h1>捨てないで！</h1>
-    <% end %>
+
+    <h4><%= @best_answer.body %></h4>
+    by
+
+
+    <%= attachment_image_tag @best_answer.user, :profile_image, :fill, 40, 40, format: "", fallback: "noimage.jpg",class:"rounded-circle",size:"40x40" %>
+
+
+
 
     <%= @best_answer.user.name %>
-    <%= @best_answer.body %>
 <% else %>
     <% @post.post_comments.each do |post_comment| %>
 
@@ -51,12 +68,12 @@
     <% end %>
 <span id="comments_blank"></span>
 
-<% end %>
-
 <!-- コメント投稿フォームも非同期にする -->
 <span id="comments_form">
   <%= render'layouts/comments_form',post: @post,post_comment: @post_comment %>
 </span>
 <br>
-
-<%= link_to "戻る", posts_path %>
+<% end %>
+<br>
+<br>
+<%= link_to "back", posts_path %>

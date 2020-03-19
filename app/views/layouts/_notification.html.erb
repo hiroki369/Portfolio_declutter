@@ -1,29 +1,26 @@
 
-<% visiter = notification.visitor %>
-<% visited = notification.visited %>
+        <% visiter = notification.visitor %>
+        <% visited = notification.visited %>
+      <table class="table">
+	             <%= link_to user_path(visiter) do  %>
+	             <%= visiter.name %>
+	             <% end %>さんが
+        <% case notification.action	when 'follow' %>
+             あなたをフォローしました。
+           <% when "favorite"%>
+             <%= link_to "あなたの投稿", notification.post %>
+              にいいねしました。
+           <% when "comment"%>
+             <% if notification.post.user_id == visited.id %>
+                <%= link_to "あなたの投稿", notification.post %>
+                にコメントしました
+             <% else %>
+                <%=link_to post_path(notification.post) do  %>
+                <%=notification.post.user.name %>さんの投稿
+                <% end %>
+               にコメントしました。
+             <% end %>
 
-<li>
-	<%= link_to user_path(visiter) do  %>
-	<%= visiter.name %>
-	<% end %>さんが
-
-<% case notification.action	when 'follow' %>
-あなたをフォローしました。
-  <% when "favorite"%>
-  <%= link_to "あなたの投稿", notification.post %>
-  にいいねしました。
-  <% when "comment"%>
-    <% if notification.post.user_id == visited.id %>
-      <%= link_to "あなたの投稿", notification.post %>
-     にコメントしました
-    <% else %>
-    <%=link_to post_path(notification.post) do  %>
-    <%=notification.post.user.name %>さんの投稿
-    <% end %>
-  にコメントしました。
-<% end %>
-
-<% end %>
-
-  <%= time_ago_in_words(notification.created_at).upcase %>
-</li>
+        <% end %>
+                <%= time_ago_in_words(notification.created_at).upcase %>
+      </table>

@@ -4,9 +4,9 @@
               <%= form_with model: [post, post_comment] do |f| %>
                      <%= f.radio_button :dispose,true, checked:true %>思い切って捨てよう！<br>
                     <%= f.radio_button :dispose,false %>捨てないで！<br>
-                <h1>その理由は？</h1>
-                    <%= f.text_area :body, rows:'5', class: "form-control",placeholder: "コメントを入力" %>
-                     <%= f.submit "投稿する" %>
+                <h1 class="mt-2">Why？</h1>
+                    <%= f.text_area :body, rows:'5', class: "form-control",placeholder: "Comments" %>
+                     <%= f.submit "Post" %>
                <% end %>
           <% else %>
                 <br><h1>投稿者本人はコメントできません。BAを選びましょう！</h1>

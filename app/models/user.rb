@@ -72,6 +72,9 @@ def self.search(search)
     User.where("name LIKE?","%#{search}%")
 end
 
+# def rank?(user)
+# end
+
 acts_as_paranoid
 
 end

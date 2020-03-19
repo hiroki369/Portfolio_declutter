@@ -10,12 +10,13 @@
   </head>
 
 <header>
-<nav class="navbar navbar-expand-lg navbar-light">
+
+      <% if user_signed_in? %>
+      <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container">
-        <h2><%= link_to "Declutter",root_path,class:'navbar-brand' %></h2>
+        <h2><%= link_to "Declutter",posts_path,class:'navbar-brand' %></h2>
 
     <ul class="nav navbar-nav navbar-right">
-      <% if user_signed_in? %>
       <ul class="navbar-nav navbar-right">
         <li class="nav-item dropdown">
          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -42,6 +43,10 @@
     </ul>
       </ul>
       <% elsif admin_signed_in? %>
+      <nav class="navbar navbar-expand-lg navbar-light">
+           <div class="container">
+              <h2><%= link_to "Declutter",admins_path,class:'navbar-brand' %></h2>
+                 <ul class="nav navbar-nav navbar-right">
           <li><%= form_tag(admins_search_result_path,:method => 'get') do %>
                 <%= select_tag :target, options_for_select([["ユーザー","user"], ["投稿","post"]],:selected=>"user") %>
                 <%= text_field_tag :search, nil %>
@@ -52,6 +57,9 @@
           <li><%= link_to "User login", new_user_session_path  %></li>
           <li><%= link_to "declutterとは", tops_about_path  %></li>
       <% else %>
+      <nav class="navbar navbar-expand-lg navbar-light">
+           <div class="container">
+             <h2><%= link_to "Declutter",posts_path,class:'navbar-brand' %></h2>
       <ul class="navbar-nav navbar-right">
         <li class="nav-item dropdown">
          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -76,15 +84,11 @@
 
     <%= yield %>
     <%= notice %>
-    <footer>
-        <nav class ="nav navbar navbar">
-           <div class="container-fluid">
-             <ul class="nav navbar-fixed-bottom">
-              <li>All Right resreved by Declutter</li>
-            </ul>
-          </div>
-        </nav>
-    </footer>
-
+    <footer class="footer mt-auto py-3 text-center">
+    <div class="container">
+      <div class ="fixed-bottom">
+      <span class="text-muted">All rights reserved by Declutter</span>
+    </div>
+  </footer>
   </body>
 </html>
