@@ -5,9 +5,9 @@
         <thead>
           <th><%= attachment_image_tag post_comment.user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "noimage.jpg", size: '60x60', class:"rounded-circle"%></th>
           <th><% if post_comment.dispose == true %>
-                  <td><h3>思い切って捨てよう！</h3></td>
+                  <td><h4>思い切って捨てよう！</h4></td>
               <% else %>
-                  <td><h3>捨てないで！</h3><td class= "text-center">by　<%= post_comment.user.name %></td></td>
+                  <td><h4>捨てないで！</h4><td class= "text-center">by　<%= post_comment.user.name %></td></td>
               <% end %>
               <% if post_comment.post.user == current_user %>
            <td><%= link_to "Bestanswer", post_post_comment_post_best_answer_path(post_comment.post_id,post_comment.id) %></td>

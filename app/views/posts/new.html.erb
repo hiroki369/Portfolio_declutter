@@ -5,8 +5,7 @@
        <div class ="col-lg-6 offset-lg-3">
 
          <h1>New post</h1>
-           <table>
-               <%= form_for(@post) do |f| %>
+         <%= form_for(@post) do |f| %>
                <tr>
                <h4>Title</h4>
                      <%= f.text_field :title, class:"form-control" %>
@@ -25,11 +24,11 @@
                 <br>
                 <%= f.submit 'Post',class:"btn btn-lg btn-secondary"%>
             </tr>
-        </table>
+            <% end %>
 
 
 
-                <% end %>
+
             </div>
         </div>
     </div>

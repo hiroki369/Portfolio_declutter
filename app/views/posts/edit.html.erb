@@ -1,17 +1,22 @@
-編集ページ
-<%= render 'layouts/errors', obj: @post %>
 
-<%= form_for(@post) do |f| %>
 
-	<h4>タイトル</h4>
-    <%= f.text_field :title%>
-
-    <h4>本文</h4>
-    <%= f.text_area :body %>
-
-    <h4>写真</h4>
-    <%= attachment_image_tag @post, :post_image, placeholder:"選択されていません" %>
- <%= f.attachment_field :post_image %>
-
-    <%= f.submit '投稿を更新する！' %>
- <% end %>
+<div class ="container">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <h1>Edit page</h1>
+      <%= render 'layouts/errors', obj: @post %>
+    <%= form_for(@post) do |f| %>
+      <h4>Title</h4>
+      <%= f.text_field :title,class:"form-control"%>
+      <h4>Introduction</h4>
+      <%= f.text_area :body,class:"form-control" %>
+      <h4>Image</h4>
+      <%= attachment_image_tag @post, :post_image, size:"530x500",class:"rounded", class:"mt-2",placeholder: "aaaaa" %>
+      <%= f.attachment_field :post_image %>
+      <br>
+      <br>
+      <%= f.submit 'Update！' %>
+    <% end %>
+   </div>
+  </div>
+ </div>
