@@ -1,21 +1,26 @@
-<h1>アドミン用、投稿情報編集ページ</h1>
 
-
-編集ページ
-
+ <div class ="container">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <h1>Edit page</h1>
+      <%= render 'layouts/errors', obj: @post %>
 
 <%= form_for(@post, url: {controller: "admins/posts", action:"update"}) do |f| %>
 
 
-	<h4>タイトル</h4>
-    <%= f.text_field :title%>
+	<h4>Title</h4>
+    <%= f.text_field :title,class:"form-control"%>
 
-    <h4>本文</h4>
-    <%= f.text_area :body %>
+    <h4>Introduction</h4>
+    <%= f.text_area :body ,class:"form-control"%>
 
-    <h4>写真</h4>
-    <%= attachment_image_tag @post, :post_image, placeholder:"選択されていません" %>
+    <h4>Image</h4>
+    <%= attachment_image_tag @post, :post_image, placeholder:"選択されていません",size:"510x500" %>
  <%= f.attachment_field :post_image %>
+ <br>
 
-    <%= f.submit '投稿を更新する！' %>
+    <%= f.submit 'Update！' %>
  <% end %>
+   </div>
+  </div>
+</div>

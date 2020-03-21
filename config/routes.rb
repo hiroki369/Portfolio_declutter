@@ -32,6 +32,7 @@ end
 
  root to: "tops#index"
  get 'tops/about', to: 'tops#about'
+ post '/tops/guest_sign_in', to: 'tops#new_guest'
 
  resources :users
  resources :posts do

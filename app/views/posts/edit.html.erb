@@ -1,5 +1,3 @@
-
-
 <div class ="container">
   <div class="row">
     <div class="col-lg-6 offset-lg-3">
@@ -11,7 +9,7 @@
       <h4>Introduction</h4>
       <%= f.text_area :body,class:"form-control" %>
       <h4>Image</h4>
-      <%= attachment_image_tag @post, :post_image, size:"530x500",class:"rounded", class:"mt-2",placeholder: "aaaaa" %>
+      <%= attachment_image_tag @post, :post_image, size:"530x500",class:"rounded", class:"mt-2",placeholder: "" %>
       <%= f.attachment_field :post_image %>
       <br>
       <br>
@@ -19,4 +17,4 @@
     <% end %>
    </div>
   </div>
- </div>
+</div>

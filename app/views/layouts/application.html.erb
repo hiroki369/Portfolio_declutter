@@ -15,6 +15,7 @@
       <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container">
         <h2><%= link_to "Declutter",posts_path,class:'navbar-brand' %></h2>
+        <span><%= @header_login_name %>でログイン中です</span>
         <span><%= form_tag(search_result_path,:method => 'get',class:'navbar-form') do %>
           <%= text_field_tag :search, nil, :placeholder => 'Postを検索！' %>
           <%= hidden_field_tag :target, "post"  %>
@@ -52,14 +53,14 @@
       <nav class="navbar navbar-expand-lg navbar-light">
            <div class="container">
               <h2><%= link_to "Declutter",admins_path,class:'navbar-brand' %></h2>
+               <span><%= @header_login_name %>でログイン中です</span>
                  <ul class="navbar-nav " >
                    <li><%= form_tag(admins_search_result_path,:method => 'get') do %>
                          <%= select_tag :target, options_for_select([["ユーザー","user"], ["投稿","post"]],:selected=>"user") %>
                          <%= text_field_tag :search, nil %>
                          <%= submit_tag 'Search', :name => nil %></li>
                       <% end %>
-                  <li><%= link_to "log out", destroy_admin_session_path, method: :delete  %></li>
-                  <li><%= link_to "How to Use", tops_about_path  %></li>
+                  <li>　<%= link_to "log out", destroy_admin_session_path, method: :delete  %></li>
                 </ul>
           </div>
         </nav>
@@ -79,11 +80,11 @@
          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
            Menu
          </a>
-         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-           <a class="dropdown-item" href="#">Guest login</a>
-           <a class="dropdown-item" href="/users/sign_in">User login</a>
-           <a class="dropdown-item" href="/admins/sign_in">Admin login</a>
-         </div>
+         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li class="dropdown-item"><%= link_to "Guest Login", tops_guest_sign_in_path,method: :post %></li>
+            <li class="dropdown-item"><%= link_to "User Login", new_user_session_path  %></li>
+            <li class="dropdown-item"><%= link_to "Admin Login", new_admin_session_path  %></li>
+         </ul>
         </li>
       </ul>
       <% end %>
@@ -97,12 +98,11 @@
   <body>
 
     <%= yield %>
-    <%= notice %>
     <footer class="footer mt-auto py-3 text-center">
     <div class="container">
       <div class ="fixed-bottom">
       <span class="text-muted">All rights reserved by Declutter</span>
-    </div>
+      </div>
   </div>
   </footer>
   </body>

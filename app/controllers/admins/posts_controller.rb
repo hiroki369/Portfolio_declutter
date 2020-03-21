@@ -1,9 +1,10 @@
 class Admins::PostsController < ApplicationController
 	before_action :authenticate_admin!
 	before_action :set_post, only: [:show, :edit, :update, :destroy]
+	PER = 10
 
 	def index
-		@posts = Post.all
+		@posts = Post.all.order(created_at: :desc).page(params[:page]).per(PER)
 	end
 
 	def show

@@ -1,22 +1,34 @@
-アドミン用　有効ユーザー一覧表示ページ
+<div class ="container">
+	<div class ="row">
+		<div class ="col-lg-12">
+			<h1 class="text-center">User 一覧</h1><br>
+			<table class="table">
+				<thead>
+					<th>User name</th>
+					<th>Status</th>
+				</thead>
+			  <% @users.each do |user|  %>
+				<tbody>
+	                <tr>
+	                   <td>
+	  	                 <%= link_to admins_users_show_path(user) do  %><%= user.name  %><% end %></td>
+	  	               <td>
+	  	                 <% if user.deleted_at.present?  %>
+	  		               退会済みのユーザーです
+	  		           <% else %>
+	  		               有効なユーザーです
+	  		           <% end %>
+	  	             </td>
+	                </tr>
+	            </tbody>
+	          <% end %>
+	   </table>
+	 </div>
+   </div>
+</div>
 
 
-退会済みユーザー一覧表示ボタン
-
-<% @users.each do |user|  %>
-     <%= link_to admins_users_show_path(user) do  %>
-      <table>
-	  <tr>
-	  <td><%= user.name  %></td>
-	  <tr>
-	  </table>
-	<% end %>
-
-
-<% if user.deleted_at.present?  %>
-退会済みのユーザーです
-<% end %>
 
 
 
-<% end %>
+
