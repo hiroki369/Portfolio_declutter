@@ -1,8 +1,11 @@
-本当に退会しますか？
+<div class ="container">
+	<div class ="row">
+		<div class ="col-lg-12"><br>
+<h1 class="text-center">本当に退会しますか？</h1>
+<h4 class="text-center">退会すると、ご自身が投稿されたPostやBestanswerを見ることができなくなります。</h4><br>
 
-はい<br>
 
-<%=link_to "はい", user_path(@user), method: :delete %>
+<div class ="col-lg-4 offset-lg-4">
+<%=link_to "はい", user_path(@user), method: :delete,class:"btn btn-danger btn-block" %><br>
 
-
-<%= link_to "いいえ", user_path(@user)  %>
+<%= link_to "いいえ", edit_user_path(@user),class:"btn btn-info btn-block"  %>

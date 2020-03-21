@@ -12,7 +12,8 @@ class User < ApplicationRecord
    has_many :followings, through: :relationships, source: :follow
    has_many :followed, class_name: 'Relationship', foreign_key: 'follow_id'
    has_many :followers, through: :followed, source: :user
-
+   validates_uniqueness_of :email, conditions: -> { with_deleted }
+   validates_uniqueness_of :name
    validates :name, length: {minimum: 2, maximum: 20}
    validates :introduction, length: { maximum: 500}
    has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
@@ -48,9 +49,6 @@ class User < ApplicationRecord
       user
   end
 
-# もしも、評価が偽(false)であれば○○する
-# other userは、自分では無い？、無いならfind or create by
-
 def follow(other_user)
 	unless self == other_user
 		self.relationships.find_or_create_by(follow_id: other_user.id)
@@ -71,6 +69,7 @@ def self.search(search)
     return User.all unless search
     User.where("name LIKE?","%#{search}%")
 end
+
 
 acts_as_paranoid
 

@@ -1,8 +1,8 @@
 ja:
   activerecord:
     models:
-      post: 投稿
+      post: Post
     attributes:
       post:
-        title: タイトル
-        body: 本文
+        title: Title
+        body: Introduction

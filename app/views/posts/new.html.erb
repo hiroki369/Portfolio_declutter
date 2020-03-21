@@ -1,28 +1,34 @@
 
+<div class ="container">
+    <div class ="row">
+      <%= render 'layouts/errors', obj: @post %>
+       <div class ="col-lg-6 offset-lg-3">
 
-    <%= render 'layouts/errors', obj: @post %>
-    新規投稿画面
-    </div>
+         <h1>New post</h1>
+         <%= form_for(@post) do |f| %>
+               <tr>
+               <h4>Title</h4>
+                     <%= f.text_field :title, class:"form-control" %>
+               </tr>
+               <tr>
+                <h4>Introduction</h4>
+                     <%= f.text_area :body, class:"form-control"%>
+                <br>
+                <%= attachment_image_tag @post, :post_image, placeholder:"画像を選択してください" %>
+            </tr>
+            <tr>
+                <%= f.attachment_field :post_image %>
+            </tr>
+            <tr>
+                <br>
+                <br>
+                <%= f.submit 'Post',class:"btn btn-lg btn-secondary"%>
+            </tr>
+            <% end %>
 
-    <h1>新規投稿</h1>
-
-               <%= form_for(@post) do |f| %>
-
-               <h4>タイトル</h4>
-                     <%= f.text_field :title %></div>
-
-                <h4>本文</h4>
-                     <%= f.text_area :body%></div>
-
-                <%= attachment_image_tag @post, :post_image, placeholder:"選択されていません" %>
- <%= f.attachment_field :post_image %>
-
-
-        <div class ="action row">
-                <%= f.submit 'コメントを投稿する'%></div>
 
 
 
-
-                <% end %>
             </div>
+        </div>
+    </div>
