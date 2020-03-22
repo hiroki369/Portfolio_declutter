@@ -2,12 +2,13 @@
 
 <div class="container">
   <div class="row">
-   <div class="col-lg-12">
+   <div class="col-lg-12 text-center">
+
 
 
     <div class ="mx-auto">
-    <h2 class ="text-center">User Login</h2>
-    <span class="text-center"><%= alert %></span>
+    <h2 class ="text-center">User Login</h2><%= alert %>
+    <span class="text-center"></span>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="text-center">
     <%= f.label :email %><br />

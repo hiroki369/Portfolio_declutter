@@ -32,14 +32,14 @@ class PostsController < ApplicationController
 
 	def update
 		if @post.update(post_params)
-			redirect_to post_path(@post.id), notice: "投稿が更新されました！"
+			redirect_to post_path(@post.id), notice: "Postが更新されました！"
 		else render :edit
 		end
 	end
 
 	def destroy
 		@post.destroy
-		redirect_to posts_path, notice: "投稿を削除しました！"
+		redirect_to posts_path, notice: "Postを削除しました！"
 	end
 
 	def best_answer

@@ -8,7 +8,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-6">
-      <h1>Posted by <%= @post.user.name %></h1>
+      <h1>Posted by <%= @post.user.name %></h1><%= notice %>
              <%= attachment_image_tag @post, :post_image, :fill, 700, 500, format: "", fallback: "noimage.jpg",class:"rounded" %>
     </div>
         <div class ="col-lg-3 offset-md-2 mt-5">
@@ -33,9 +33,9 @@
 
 
          <div class="col-lg-12 mt-">
-            <h1>Comments</h1>
+            <h1>Comments</h1><br>
               <% if @best_answer.present? %>
-                 <h1 class="mt-2">Bestanswer</h1>
+                 <h1 class="mt-2">Best answer is...</h1>
                    <% if @best_answer.dispose == true %>
                        <h4>思い切って捨てよう！</h4>
                    <% else %>
@@ -61,7 +61,7 @@
             <% end %>
                 <br>
                 <br>
-                 <%= link_to "back", posts_path %>
+                 <%= link_to "back", posts_path, class:"btn btn-lg btn-info" %>
           </div>
       </div>
   </div>

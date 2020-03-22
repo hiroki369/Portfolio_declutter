@@ -21,9 +21,9 @@ class PostCommentsController < ApplicationController
 		@post.user.best_answer_count += 1
 		if@comment.save
 			@post.user.save
-			redirect_to post_path(@post)
+			redirect_to post_path(@post),notice: 'Bestanswerを認定しました！'
 		else
-		  render templete: "posts/show"
+		  render templete: "posts/show",notice: 'Bestanswerの認定に失敗しました！'
 		end
 	end
 
