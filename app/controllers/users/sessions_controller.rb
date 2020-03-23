@@ -3,15 +3,19 @@
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
-  # GET /resource/sign_in
-  # def new
+  #GET /resource/sign_in
+  #def new
   #   super
-  # end
+  #end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+   def create
+    if find_deleted_user
+      redirect_to new_user_session_path, alert: "このユーザーは退会済みです。"
+      return
+    end
+    super
+   end
 
   # DELETE /resource/sign_out
   # def destroy
@@ -24,4 +28,9 @@ class Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+  private
+  def find_deleted_user
+    User.with_deleted.find_by(email: params[:user][:email])
+  end
 end

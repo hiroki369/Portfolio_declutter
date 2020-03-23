@@ -48,12 +48,32 @@ class Post < ApplicationRecord
       action: 'comment'
       )
 
-     #自分の投稿に対するコメントの場合は、通知済みとする
+     #自分の投稿に対するコメントの場合は、通知済みとする(使わない)
       if notification.visitor_id == notification.visited_id
       notification.checked = true
        end
       notification.save if notification.valid?
     end
+
+    # def create_notification_post_comment_best_answer(current_user,comment_id)
+    #   temp_ids = PostComment.select(:user_id).where(post_id: id).where(best_answer: true).where.not(user_id: current_user.id).distinct
+    #   temp_ids.each do |temp_id|
+    #     save_notification_post_comment_best_answer(current_user, comment_id, temp_id['user_id'])
+    #     binding.pry
+    #   end
+    # end
+
+    # def save_notification_post_comment_best_answer(current_user,post_comment_id,visited_id,best_answer)
+
+    #   notification = current_user.active_notifications.new(
+    #   post_id: id,
+    #   post_comment_id: post_comment_id,
+    #   visited_id: visited_id,
+    #   best_answer: best_answer,
+    #   action: 'best_answer'
+    #   )
+
+    # end
 
 
 

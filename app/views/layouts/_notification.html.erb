@@ -20,6 +20,11 @@
                 <% end %>
                にコメントしました。
              <% end %>
+           <% when "best_answer" %>
+             <% if notification.post.user_id == visited.id %>
+                <%= link_to "あなたのコメント", notification.post %>
+                がベストアンサーに認定されました！
+                <% end %>
 
         <% end %>
                 <%= time_ago_in_words(notification.created_at).upcase %>

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :set_post, only: [:show, :edit, :update, :destroy]
+	before_action :set_post, only: [:show, :edit, :update, :destroy,]
 	PER =5
 
 	def new
@@ -27,19 +27,20 @@ class PostsController < ApplicationController
 	end
 
 	def edit
+		check_user(@post)
 	end
 
 
 	def update
 		if @post.update(post_params)
-			redirect_to post_path(@post.id), notice: "投稿が更新されました！"
+			redirect_to post_path(@post.id), notice: "Postが更新されました！"
 		else render :edit
 		end
 	end
 
 	def destroy
 		@post.destroy
-		redirect_to posts_path, notice: "投稿を削除しました！"
+		redirect_to posts_path, notice: "Postを削除しました！"
 	end
 
 	def best_answer
@@ -56,6 +57,12 @@ private
 
 	def post_params
 		params.require(:post).permit(:title, :body, :post_image)
+	end
+
+	def check_user(post)
+		if post.user.id != current_user.id
+			redirect_to posts_path
+		end
 	end
 
 end

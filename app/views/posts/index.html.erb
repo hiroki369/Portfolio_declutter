@@ -7,7 +7,7 @@
 
   <div class="container">
     <div class ="row">
-      <div class="col-lg-12 text-center">
+      <div class="col-lg-12 text-center"><%= notice %>
         <h1>Posts</h1>
         <% @posts.each do |post| %>
            <div class="col-lg-12 text-center">
@@ -42,7 +42,8 @@
             </div>
         <% end %>
     </div>
+    <div class="col-lg-6 offset-lg-5">
+    <%= paginate @posts, class: "paginate"%></div>
   </div>
 </div>
 
-<%= paginate @posts, class: "paginate", class:"text-center" %>
