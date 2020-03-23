@@ -46,8 +46,6 @@
                       <%= @best_answer.user.name %>
             <% else %>
                    <% @post.post_comments.each do |post_comment| %>
-
-                    <!--コメント一覧非同期-->
                       <span id="comments_<%= post_comment.id %>">
                         <%= render'layouts/comments',post_comment: post_comment %>
                       </span>

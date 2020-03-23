@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update, :destroy, :confirm, :follow, :follower]
+	before_action :check_user
 	# PER = 5
 
 
@@ -45,6 +46,11 @@ private
 	end
     def set_user
     	@user = User.find(params[:id])
+    end
+    def check_user
+    	unless params[:id].to_i == current_user.id
+    		redirect_to user_path(current_user)
+    	end
     end
 
 

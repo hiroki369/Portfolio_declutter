@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :set_post, only: [:show, :edit, :update, :destroy]
+	before_action :set_post, only: [:show, :edit, :update, :destroy,]
 	PER =5
 
 	def new
@@ -27,6 +27,7 @@ class PostsController < ApplicationController
 	end
 
 	def edit
+		check_user(@post)
 	end
 
 
@@ -56,6 +57,12 @@ private
 
 	def post_params
 		params.require(:post).permit(:title, :body, :post_image)
+	end
+
+	def check_user(post)
+		if post.user.id != current_user.id
+			redirect_to posts_path
+		end
 	end
 
 end

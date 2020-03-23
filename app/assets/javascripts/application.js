@@ -24,5 +24,5 @@ $(function() {
 	},500);
 	setTimeout(function(){
 		$('.start').fadeOut(500);
-	},2500);
+	},100);
 });
