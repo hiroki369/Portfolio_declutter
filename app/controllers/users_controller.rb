@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update, :destroy, :confirm, :follow, :follower]
-	before_action :check_user
+	before_action :check_user, except:[:index,:show]
 	# PER = 5
 
 
