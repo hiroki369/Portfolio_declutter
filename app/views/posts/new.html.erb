@@ -3,16 +3,15 @@
     <div class ="row">
       <%= render 'layouts/errors', obj: @post %>
        <div class ="col-lg-6 offset-lg-3">
-
          <h1>New post</h1>
          <%= form_for(@post) do |f| %>
                <tr>
                <h4>Title</h4>
-                     <%= f.text_field :title, class:"form-control" %>
+                     <%= f.text_field :title, class:"form-control",placeholder:"タイトルを入力してください" %>
                </tr>
                <tr>
                 <h4>Introduction</h4>
-                     <%= f.text_area :body, class:"form-control"%>
+                     <%= f.text_area :body, class:"form-control",placeholder:"なぜ捨てるか迷っているのか入力してください"%>
                 <br>
                 <%= attachment_image_tag @post, :post_image, placeholder:"画像を選択してください" %>
             </tr>
@@ -25,10 +24,6 @@
                 <%= f.submit 'Post',class:"btn btn-lg btn-secondary"%>
             </tr>
             <% end %>
-
-
-
-
-            </div>
         </div>
     </div>
+</div>

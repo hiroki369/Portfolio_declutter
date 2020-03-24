@@ -18,11 +18,18 @@ class PostCommentsController < ApplicationController
 		user =@post.user_id
 		@comment = PostComment.find(params[:post_comment_id])
 		@comment.best_answer = true
+		@notification = current_user.active_notifications.new(
+        post_id: @post.id,
+        post_comment_id:@comment.id,
+        visited_id: @comment.user.id,
+        action: 'best_answer'
+      )
+		@notification.save
 		@comment.user.best_answer_count += 1
 		if@comment.save
 			@comment.user.save
 			@post.user.save
-			redirect_to post_path(@post),notice: 'Bestanswerを認定しました！'
+			 redirect_to post_path(@post),notice: 'Bestanswerを認定しました！'
 		else
 		  render templete: "posts/show",notice: 'Bestanswerの認定に失敗しました！'
 		end

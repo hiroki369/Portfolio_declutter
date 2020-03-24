@@ -1,31 +1,33 @@
-
-        <% visiter = notification.visitor %>
-        <% visited = notification.visited %>
-      <table class="table">
-	             <%= link_to user_path(visiter) do  %>
-	             <%= visiter.name %>
-	             <% end %>さんが
-        <% case notification.action	when 'follow' %>
-             あなたをフォローしました。
-           <% when "favorite"%>
-             <%= link_to "あなたの投稿", notification.post %>
-              にいいねしました。
-           <% when "comment"%>
-             <% if notification.post.user_id == visited.id %>
-                <%= link_to "あなたの投稿", notification.post %>
-                にコメントしました
-             <% else %>
-                <%=link_to post_path(notification.post) do  %>
-                <%=notification.post.user.name %>さんの投稿
-                <% end %>
-               にコメントしました。
-             <% end %>
-           <% when "best_answer" %>
-             <% if notification.post.user_id == visited.id %>
-                <%= link_to "あなたのコメント", notification.post %>
-                がベストアンサーに認定されました！
-                <% end %>
-
+<% visiter = notification.visitor %>
+<% visited = notification.visited %>
+<table class="table">
+	    <%= link_to user_path(visiter) do  %>
+	      <%= visiter.name %>
+      <% end %>さんが
+  <% case notification.action	when 'follow' %>
+      あなたをフォローしました。
+  <% when "favorite"%>
+    <%= link_to "あなたの投稿", notification.post %>
+      にいいねしました。
+  <% when "comment"%>
+    <% if notification.post.user_id == visited.id %>
+        <%= link_to "あなたの投稿", notification.post %>
+        にコメントしました。
+    <% else %>
+        <%=link_to post_path(notification.post) do  %>
+         <%=notification.post.user.name %>さんの投稿
         <% end %>
-                <%= time_ago_in_words(notification.created_at).upcase %>
-      </table>
+          にコメントしました。
+    <% end %>
+    <% if notification.post_comment.user_id == visited.id %>
+         <%= link_to "あなたのコメント", notification.post %>
+          がベストアンサーに認定されました！
+      <% end %>
+  <% when "best_answer" %>
+     <% if notification.post_comment.user_id == visited.id %>
+         <%= link_to "あなたのコメント", notification.post %>
+          をベストアンサーに認定しました！
+      <% end %>
+  <% end %>
+        <%= time_ago_in_words(notification.created_at).upcase %>
+</table>
