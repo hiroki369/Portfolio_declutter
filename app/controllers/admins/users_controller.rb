@@ -7,6 +7,8 @@ class Admins::UsersController < ApplicationController
 
 	def index
 		@users = User.all.with_deleted
+		@users_deleted = User.all.only_deleted
+		@users_valid = User.all.without_deleted
 	end
 
 
@@ -18,9 +20,8 @@ class Admins::UsersController < ApplicationController
 
 	def update
 		if @user.update(user_params)
-			redirect_to admins_users_show_path(@user)
-		else
-			render :edit
+			redirect_to admins_users_show_path(@user),notice: "User情報を更新しました！"
+		else render :edit,notice: "User情報の更新に失敗しました！"
 		end
 	end
 

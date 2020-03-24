@@ -1,13 +1,13 @@
 <% if post.posted?(current_user) %><br>
-これ以上投稿できません。以前の投稿を削除して再度投稿してください。
-          <% elsif  post.user != current_user %>
-              <%= form_with model: [post, post_comment] do |f| %>
-                     <%= f.radio_button :dispose,true, checked:true %>思い切って捨てよう！<br>
-                    <%= f.radio_button :dispose,false %>捨てないで！<br>
-                <h1 class="mt-2">Why？</h1>
-                    <%= f.text_area :body, rows:'5', class: "form-control",placeholder: "Comments" %>
-                     <%= f.submit "Post" %>
-               <% end %>
-          <% else %>
-                <br><h2>投稿者本人はコメントできません。Bestanswerを選びましょう！</h2>
-          <% end %>
+  これ以上投稿できません。以前の投稿を削除して再度投稿してください。
+<% elsif  post.user != current_user %>
+  <%= form_with model: [post, post_comment] do |f| %>
+    <%= f.radio_button :dispose,false, checked:true %>捨てないで！<br>
+    <%= f.radio_button :dispose,true %>思い切って捨てよう！<br>
+    <h1 class="mt-2">Why？</h1>
+    <%= f.text_area :body, rows:'5', class: "form-control",placeholder: "なぜそう思ったのかコメントを残そう！" %><br>
+    <%= f.submit "Post", class:"btn btn-secondary" %>
+  <% end %>
+<% else %>
+  <br><h2>投稿者本人はコメントできません。Bestanswerを選びましょう！</h2>
+<% end %>

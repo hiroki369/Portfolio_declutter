@@ -1,19 +1,19 @@
-アドミン用　ユーザー登録情報編集ページ
-
-
-<%= form_for(@user, url: {controller: "admins/users", action: "update"}) do |f|  %>
-
-<h1>プロフィール画像</h1>
-<%= attachment_image_tag @user, :profile_image, placeholder:"選択されていません" %>
- <%= f.attachment_field :profile_image %>
-
-	<h4>ユーザーネーム</h4>
-    <%= f.text_field :name%>
-
-    <h4>自己紹介</h4>
-    <%= f.text_area :introduction %>
-
-    <%= f.submit 'プロフィールを更新する！' %>
- <% end %>
+<div class ="container">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+        <%= render 'layouts/errors', obj: @user %>
+          <%= form_for(@user, url: {controller: "admins/users", action: "update"}) do |f|  %>
+             <h4>Profile image</h4>
+             <%= attachment_image_tag @user, :profile_image, placeholder:"選択されていません",size:"530x500" %>
+             <%= f.attachment_field :profile_image %>
+             <h4>Username</h4>
+             <%= f.text_field :name,class:"form-control"%>
+             <h4>Introduction</h4>
+             <%= f.text_area :introduction,class:"form-control" %><br>
+             <%= f.submit 'Update profile！' %>
+        <% end %>
+   </div>
+  </div>
+</div>
 
 

@@ -15,7 +15,7 @@ class User < ApplicationRecord
    validates_uniqueness_of :email, conditions: -> { with_deleted }
    validates_uniqueness_of :name
    validates :name, length: {minimum: 2, maximum: 20}
-   validates :introduction, length: { maximum: 500}
+   validates :introduction, length: { maximum: 240}
    has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
    has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
