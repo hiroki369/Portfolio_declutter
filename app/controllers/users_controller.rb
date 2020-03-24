@@ -1,14 +1,10 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update, :destroy, :confirm, :follow, :follower]
-	before_action :check_user, except:[:index,:show]
-	# PER = 5
-
+	before_action :check_user, only:[:edit]
+	PER = 10
 
 	def index
-		@users = User.all.order(best_answer_count:"DESC")
-		@ranks = @users.map{ |rank| rank[:id]}
-		@my_rank = @ranks.find_index(current_user.id) + 1
-
+		@users = User.all.order(best_answer_count:"DESC").page(params[:page]).per(PER)
 	end
 
 	def show

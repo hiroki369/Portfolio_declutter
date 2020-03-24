@@ -70,6 +70,11 @@ def self.search(search)
     User.where("name LIKE?","%#{search}%")
 end
 
+def rank
+  ranks = User.all.order(best_answer_count:"DESC").map{ |rank| rank[:id]}
+  return ranks.find_index(self.id) + 1
+end
+
 
 acts_as_paranoid
 
