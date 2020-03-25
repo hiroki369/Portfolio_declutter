@@ -67,7 +67,7 @@ end
 
 def self.search(search)
     return User.all unless search
-    User.where("name LIKE?","%#{search}%")
+    User.with_deleted.where("name LIKE?","%#{search}%")
 end
 
 def rank

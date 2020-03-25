@@ -25,7 +25,7 @@ class PostCommentsController < ApplicationController
         post_comment_id:@comment.id,
         visited_id: @comment.user.id,
         action: 'best_answer'
-      )
+        )
 		@notification.save
 		@comment.user.best_answer_count += 1
 		if@comment.save

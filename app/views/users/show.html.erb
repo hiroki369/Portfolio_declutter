@@ -6,20 +6,20 @@
            <div class ="col-lg-4">
               <table class ="table table-borderless">
                  <tbody>
-                     <tr>
+                      <tr>
                         <td><%= @user.name %>
                            <% if @user == current_user %>
                               <%= link_to "Edit profile", edit_user_path(@user), class: "btn btn-sm btn-secondary"  %>
                             <% end %>
                         </td>
-                     </tr>
+                      </tr>
                       <tr>
                          <td><%= @user.introduction %><br></td>
                       </tr>
-                       <tr>
+                      <tr>
                           <td>Posts <%= @user.posts.count  %>件</td>
-                       </tr>
-                       <tr>
+                      </tr>
+                      <tr>
                           <td>Follow<%= link_to user_follow_path(@user) do  %>
                               <%= @user.followings.count %>人</td>
                       </tr>
@@ -28,10 +28,10 @@
                           <td>Follower<%= link_to user_follower_path(@user) do  %><%= @user.followed.count %>人</td>
                       </tr>
                            <% end %>
-                       <tr>
+                      <tr>
                           <td>Best answer<%= @user.best_answer_count%>件</td>
-                       </tr>
-                       <tr>
+                      </tr>
+                      <tr>
                           <td><%= render 'layouts/follow_btn', user: @user  %></td>
                        </tr>
                </tbody>

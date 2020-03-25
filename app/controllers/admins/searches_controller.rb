@@ -14,8 +14,8 @@ class Admins::SearchesController < ApplicationController
 		render 'admins/posts/index.html.erb'
 	  elsif
 		@users = User.search(params[:search]).page(params[:page]).per(PER)
-		@users_deleted = User.all.only_deleted.search(params[:search]).page(params[:page]).per(PER)
-		@users_valid = User.all.without_deleted.search(params[:search]).page(params[:page]).per(PER)
+		@users_deleted = @users.only_deleted.page(params[:page]).per(PER)
+		@users_valid = @users.without_deleted.page(params[:page]).per(PER)
         if params[:search] == ""
         	@result = "User全件を表示します。"
 	    else
