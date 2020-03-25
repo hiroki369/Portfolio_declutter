@@ -3,24 +3,17 @@
   <div class="row">
     <div class="col-lg-6 offset-lg-3">
       <h1>Edit page</h1>
-      <%= render 'layouts/errors', obj: @post %>
-
-<%= form_for(@post, url: {controller: "admins/posts", action:"update"}) do |f| %>
-
-
-	<h4>Title</h4>
-    <%= f.text_field :title,class:"form-control"%>
-
-    <h4>Introduction</h4>
-    <%= f.text_area :body ,class:"form-control"%>
-
-    <h4>Image</h4>
-    <%= attachment_image_tag @post, :post_image, placeholder:"選択されていません",size:"510x500" %>
- <%= f.attachment_field :post_image %>
- <br>
-
-    <%= f.submit 'Update！' %>
- <% end %>
+       <%= render 'layouts/errors', obj: @post %>
+        <%= form_for(@post, url: {controller: "admins/posts", action:"update"}) do |f| %>
+           <h4>Title</h4>
+        <%= f.text_field :title,class:"form-control"%>
+           <h4>Introduction</h4>
+        <%= f.text_area :body ,class:"form-control"%>
+           <h4>Image</h4>
+           <%= attachment_image_tag @post, :post_image, placeholder:"選択されていません",size:"510x500" %>
+        <%= f.attachment_field :post_image %><br><br>
+        <%= f.submit 'Update！' %>
+        <% end %>
    </div>
   </div>
 </div>

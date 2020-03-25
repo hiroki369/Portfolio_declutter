@@ -16,8 +16,6 @@
  @import "bootstrap";
 
 
-
-
 body{font-family: 'Oswald', sans-serif;}
 
 body {
@@ -40,9 +38,41 @@ p.explanation{
   text-align: center;
 }
 
+/* 767px以下 */
+
+@media screen and (max-width: 767px){
+div.step1{
+  height: 100px;
+  width: 100px;
+  background-image: url('/assets/images/step1.jpg');
+  background-size: cover;
+}
+
+p.step-comment{
+  font-size: 330%;
+}
+
+div.step2{
+  height: 100px;
+  width: 100px;
+  background-image: url('/assets/images/step2.jpg');
+  background-size: cover;
+}
+
+div.step3{
+  height: 100px;
+  width: 100px;
+  background-image: url('/assets/images/step3.jpg');
+  background-size: cover;
+}
+}
+
+/* 767px以上 */
+
+@media screen and (min-width: 767px){
 div.step1{
   height: 300px;
-  width: 300px;
+  width: auto;
   background-image: url('/assets/images/step1.jpg');
   background-size: cover;
 }
@@ -53,16 +83,17 @@ p.step-comment{
 
 div.step2{
   height: 300px;
-  width: 300px;
+  width: auto;
   background-image: url('/assets/images/step2.jpg');
   background-size: cover;
 }
 
 div.step3{
   height: 300px;
-  width: 300px;
+  width: auto;
   background-image: url('/assets/images/step3.jpg');
   background-size: cover;
+}
 }
 
 h1.function_explanation{

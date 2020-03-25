@@ -1,11 +1,12 @@
 <div class ="container">
 	<div class="row">
 		<div class ="col-lg-12 text-center"><br>
-           <h1>本当に復元しますか？</h1><br>
+           <h1>本当に復元しますか？</h1>
 　　　　　　　　<%= form_for(@user, url: {controller: "admins/restore_confirmations", action: "restore"}) do |f| %>
-　　　　　　　　　　<%= f.hidden_field :user, :value => @user %>
-　　　　　　　　　　<%= f.submit "ユーザーを復元する", class:"btn btn-brock btn-primary" %>
+　　　　　　　　　　<%= f.hidden_field :user, :value => @user %><br>
+　　　　　　　　　　<%= f.submit "はい", class:"btn btn-lg btn-danger mr-4" %>
 　　　　　　　　<% end %>
+                <%= link_to "いいえ", admins_users_show_path(@user), class:"btn btn-lg btn-primary mt-2" %>
         </div>
      </div>
 </div>

@@ -17,8 +17,7 @@ class Admins::PostsController < ApplicationController
 		if @post.update(post_params)
 			redirect_to admins_posts_path, notice: "投稿が更新されました！"
 		else
-		@posts = Post.all
-	    render :index, notice:"投稿の更新に失敗しました！！"
+	    render :edit
 		end
 	end
 

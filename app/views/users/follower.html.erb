@@ -4,17 +4,18 @@
 			<h2>Followed users</h2>
 			<table class="table">
 				<thead>
-				 <tr>
-					<th>
-					 </h1>Username</h1>
-				    </th>
+				   <tr>
+				    	<th>
+					      </h1>Username</h1>
+			    	  </th>
 			     </tr>
-                        <% @user.followers.each do |user| %>
-                    <tr>
-                     <td><%= link_to user_path(user) do  %><%= user.name  %><% end %></td>
-                    </tr>
-                </table>
-                       <% end %>
-          </div>
-      </div>
+			  </thead>
+    <% @user.followers.each do |user| %>
+          <tr>
+            <td><%= link_to user_path(user) do  %><%= user.name  %><% end %></td>
+          </tr>
+       </table>
+    <% end %>
+    </div>
   </div>
+</div>

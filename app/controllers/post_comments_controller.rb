@@ -3,8 +3,10 @@ class PostCommentsController < ApplicationController
 		@post =Post.find(params[:post_id])
 		@comment = current_user.post_comments.new(post_comment_params)
 		@comment.post_id = @post.id
-		@comment.save
-		@post.create_notification_post_comment(current_user,@comment.id)
+		if @comment.save
+		   @post.create_notification_post_comment(current_user,@comment.id)
+		else redirect_to post_path(@post),notice:"コメントを入力してください。"
+		end
 	end
 
 	def destroy
@@ -23,7 +25,7 @@ class PostCommentsController < ApplicationController
         post_comment_id:@comment.id,
         visited_id: @comment.user.id,
         action: 'best_answer'
-      )
+        )
 		@notification.save
 		@comment.user.best_answer_count += 1
 		if@comment.save
