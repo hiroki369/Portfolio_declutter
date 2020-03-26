@@ -1,12 +1,12 @@
 
-        <% if post.favorited?(current_user) %>
-           <%= link_to "/posts/#{post.id}/favorites", method: :delete, remote: true do%>
-              <span class="fa fa-heart fa-3x" aria-hidden="true" style="color: red;"></span>
-              <%= post.favorites.count %>
-           <% end %>
-        <% else %>
-              <%= link_to "/posts/#{post.id}/favorites", method: :post, remote: true do %>
-                  <i class="fa fa-heart-o fa-3x" aria-hidden="true"></i>
-              <% end %>
-              <%= post.favorites.count %>
+<% if post.favorited?(current_user) %>
+      <%= link_to "/posts/#{post.id}/favorites", method: :delete, remote: true do%>
+        <span class="fa fa-heart fa-3x" aria-hidden="true" style="color: red;"></span>
+          <%= post.favorites.count %>
+      <% end %>
+<% else %>
+      <%= link_to "/posts/#{post.id}/favorites", method: :post, remote: true do %>
+          <i class="fa fa-heart-o fa-3x" aria-hidden="true"></i>
+      <% end %>
+          <%= post.favorites.count %>
         <% end %>

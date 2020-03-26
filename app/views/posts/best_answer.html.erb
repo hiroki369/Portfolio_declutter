@@ -1,6 +1,6 @@
 <div class="container">
-	<div class="row">
-		<div class="col-lg-12 text-center">
+  <div class="row">
+    <div class="col-lg-12 text-center">
           <%= @comment.user.name  %>さんの回答をベストアンサーに認定しますか？<br><br>
           <%= link_to "認定する！", post_post_comment_best_answer_path, method: :patch,class:"btn btn-lg btn-primary" %><br><br>
           <%= link_to "やめる", post_path(@post),class:"btn btn-lg btn-danger" %>
