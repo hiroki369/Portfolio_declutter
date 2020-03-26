@@ -73,3 +73,7 @@ gem 'omniauth-facebook'
 gem 'dotenv-rails'
 gem 'rails-i18n'
 gem 'bootstrap', '~> 4.3.1'
+
+group :production do
+  gem 'mysql2'
+end
