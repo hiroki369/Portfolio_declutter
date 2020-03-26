@@ -1,6 +1,6 @@
 <div class ="container">
-	<div class="row">
-		<div class ="col-lg-12 text-center"><br>
+  <div class="row">
+    <div class ="col-lg-12 text-center"><br>
            <h1>本当に復元しますか？</h1>
 　　　　　　　　<%= form_for(@user, url: {controller: "admins/restore_confirmations", action: "restore"}) do |f| %>
 　　　　　　　　　　<%= f.hidden_field :user, :value => @user %><br>
