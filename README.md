@@ -1,24 +1,24 @@
-# README
+# Declutter(デクラッター)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ Declutterは捨てるか迷っている物の写真を投稿し、他のユーザーにどうすべきか相談できるサービスです。
+ 投稿されたPostに対するコメントから、１つだけBest answerを選ぶ事ができます。
+ 
+## 詳細
 
-Things you may want to cover:
+[本番環境](https://declutter-app.com)
 
+[Qiita,現在執筆中](#)
+
+[Git hub](https://github.com/hiroki369/Portfolio_declutter/)
+ 
+ 
+
+## 開発環境
 * Ruby version
 
-* System dependencies
+　2.5.7p206
 
-* Configuration
+* Ruby on Rail version
 
-* Database creation
+　5.2.4.1
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
