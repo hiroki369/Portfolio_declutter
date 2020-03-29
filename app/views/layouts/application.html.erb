@@ -32,7 +32,7 @@
          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
            <li class="dropdown-item"><%= link_to"Mypage",user_path(current_user) %></li>
            <li class="dropdown-item"><%= link_to "User ranking", users_path  %></li>
-           <li class="dropdown-item"><%= link_to "Notifications", notifications_path(current_user)  %></li>
+           <li class="dropdown-item"><%= link_to "Notifications", notifications_path  %></li>
            <li class="dropdown-item"><%= link_to "Log out", destroy_user_session_path, method: :delete  %></li>
         </ul>
        </li>

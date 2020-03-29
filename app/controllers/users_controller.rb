@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update, :destroy, :confirm, :follow, :follower]
 	before_action :check_user, only:[:edit]
+	before_action :check_guest, only:[:destroy,:edit]
 	PER = 10
 
 	def index
@@ -47,6 +48,12 @@ private
     	unless params[:id].to_i == current_user.id
     		redirect_to user_path(current_user)
     	end
+    end
+
+    def check_guest
+    if @user.email == 'guest@example.com'
+      redirect_to user_path(@user), notice: 'ゲストユーザーでその操作はできません。'
+    end
     end
 
 

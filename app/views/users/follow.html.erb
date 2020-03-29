@@ -7,14 +7,14 @@
          <tr>
           <th>
            </h1>Username</h1>
-            </th>
+          </th>
            </tr>
-                        <% @user.followings.each do |user| %>
-                    <tr>
-                     <td><%= link_to user_path(user) do  %><%= user.name  %><% end %></td>
-                    </tr>
-                </table>
-                       <% end %>
-          </div>
-      </div>
+               <% @user.followings.each do |user| %>
+            <tr>
+                <td><%= link_to user_path(user) do  %><%= user.name  %><% end %></td>
+             </tr>
+               <% end %>
+      </table>
+    </div>
   </div>
+</div>

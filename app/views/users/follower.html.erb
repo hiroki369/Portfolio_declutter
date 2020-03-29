@@ -10,12 +10,12 @@
 			    	  </th>
 			     </tr>
 			  </thead>
-    <% @user.followers.each do |user| %>
+         <% @user.followers.each do |user| %>
           <tr>
             <td><%= link_to user_path(user) do  %><%= user.name  %><% end %></td>
           </tr>
+        <% end %>
        </table>
-    <% end %>
     </div>
   </div>
 </div>
