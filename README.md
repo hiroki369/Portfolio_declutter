@@ -2,7 +2,8 @@
 
  Declutterは捨てるか迷っている物の写真を投稿し、他のユーザーにどうすべきか相談できるサービスです。
  
- 投稿されたPostに対するコメントから１つだけBest answerを選ぶ事ができます。
+ 投稿されたPostにはコメントを残す事ができ、投稿者は役にたった一番良いコメントをBest answerに選ぶ事ができます。
+ 
  
 ## 詳細
 
@@ -11,7 +12,6 @@
 [Qiita](https://qiita.com/max_xam369/private/3dcf33bdc2209c273d54)
 
 [Git hub](https://github.com/hiroki369/Portfolio_declutter/)
- 
  
 
 ## 開発環境
