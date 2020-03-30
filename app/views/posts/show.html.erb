@@ -8,7 +8,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-6">
-      <h1>Posted by <%= @post.user.name %></h1><%= notice %>
+      <h1>Posted by <%= link_to user_path(@post.user) do  %><%= @post.user.name %><% end %></h1><%= notice %>
              <%= attachment_image_tag @post, :post_image, :fill, 700, 500, format: "", fallback: "noimage.jpg",class:"rounded" %>
     </div>
         <div class ="col-lg-3 offset-md-2 mt-5">
