@@ -1,20 +1,18 @@
 <div class ="container">
- <div class="row">
-   <div class="col-lg-6 offset-lg-3">
-     <%= notice %>
-       <%= render 'layouts/errors', obj: @user %>
-           <%= form_for (@user) do |f|  %>
-            <br>
-              <h4>Profile image</h4>
-                <%= attachment_image_tag @user, :profile_image, placeholder:"選択されていません",size:"530x500" %>
-                <%= f.attachment_field :profile_image %>
-              <h4>Username</h4>
-            <%= f.text_field :name,class:"form-control"%>
-              <h4>Introduction</h4>
-            <%= f.text_area :introduction,class:"form-control" %><br>
-            <%= f.submit 'Update profile！' %>
-            <% end %><br>
-              <%= link_to "退会する", users_destroy_confirm_path ,class:"btn btn-danger" %>
-     </div>
-   </div>
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3"><%= notice %>
+              <%= render 'layouts/errors', obj: @user %>
+                  <%= form_for (@user) do |f|  %><br>
+                      <h4>Profile image</h4>
+                          <%= attachment_image_tag @user, :profile_image, placeholder:"選択されていません",size:"530x500" %>
+                          <%= f.attachment_field :profile_image %>
+                      <h4>Username</h4>
+                          <%= f.text_field :name,class:"form-control"%>
+                      <h4>Introduction</h4>
+                          <%= f.text_area :introduction,class:"form-control" %><br>
+                          <%= f.submit 'Update profile！' %>
+                  <% end %><br>
+                  <%= link_to "退会する", users_destroy_confirm_path ,class:"btn btn-danger" %>
+        </div>
+    </div>
 </div>
