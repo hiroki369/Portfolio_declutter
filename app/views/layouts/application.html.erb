@@ -1,98 +1,100 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Declutter</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-      <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP|Oswald&display=swap" rel="stylesheet">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <head>
+        <title>Declutter</title>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+        <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP|Oswald&display=swap" rel="stylesheet">
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
 
-<header>
-
-      <% if user_signed_in? %>
-      <nav class="navbar navbar-expand-lg navbar-light">
-  <div class="container">
-        <h2><%= link_to "Declutter",posts_path,class:'navbar-brand' %></h2>
-        <span><%= @header_login_name %>でログイン中です。</span>
-        <span><%= form_tag(search_result_path,:method => 'get',class:'navbar-form') do %>
-          <%= text_field_tag :search, nil, :placeholder => 'Postを検索！' %>
-          <%= hidden_field_tag :target, "post"  %>
-          <%= submit_tag 'Search', :name => nil %>
-        </span>
-    <% end %>
-
-    <ul class="nav navbar-nav navbar-right">
-      <ul class="navbar-nav navbar-right">
-        <li class="nav-item dropdown">
-         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-           User menu
-         </a>
-         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-           <li class="dropdown-item"><%= link_to"Mypage",user_path(current_user) %></li>
-           <li class="dropdown-item"><%= link_to "User ranking", users_path  %></li>
-           <li class="dropdown-item"><%= link_to "Notifications", notifications_path  %></li>
-           <li class="dropdown-item"><%= link_to "Log out", destroy_user_session_path, method: :delete  %></li>
-        </ul>
-       </li>
-     </ul>
-     <ul class="navbar-nav navbar-right">
-        <li class="nav-item dropdown">
-     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-           Post menu
-         </a>
-         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li class="dropdown-item"><%= link_to "Posts", posts_path  %></li>
-          <li class="dropdown-item"><%= link_to "New post", new_post_path %></li>
-        </ul>
-      </li>
-    </ul>
-  </ul>
+    <header>
+        <% if user_signed_in? %>
+          <nav class="navbar navbar-expand-lg navbar-light">
+              <div class="container">
+                  <h2><%= link_to "Declutter",posts_path,class:'navbar-brand' %></h2>
+                  <span><%= @header_login_name %>でログイン中です。</span>
+                  <span>
+                      <%= form_tag(search_result_path,:method => 'get',class:'navbar-form') do %>
+                          <%= text_field_tag :search, nil, :placeholder => 'Postを検索！' %>
+                          <%= hidden_field_tag :target, "post"  %>
+                          <%= submit_tag 'Search', :name => nil %>
+                  </span>
+                  <% end %>
+          <ul class="nav navbar-nav navbar-right">
+              <ul class="navbar-nav navbar-right">
+                  <li class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                           User menu</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li class="dropdown-item"><%= link_to"Mypage",user_path(current_user) %></li>
+                                <li class="dropdown-item"><%= link_to "User ranking", users_path  %></li>
+                                <li class="dropdown-item"><%= link_to notifications_path do  %>
+                                     <% if unchecked_notifications.any? %>
+                                         <span class= "text-danger">Notifications</span>
+                                    <% else %>
+                                          <span>Notifications</span>
+                                    <% end %>
+                                  <% end %>
+                                 </li>
+                                 <li class="dropdown-item"><%= link_to "Log out", destroy_user_session_path, method: :delete  %></li>
+                            </ul>
+                      </li>
+                  </ul>
+              <ul class="navbar-nav navbar-right">
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                         Post menu </a>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li class="dropdown-item"><%= link_to "Posts", posts_path  %></li>
+                              <li class="dropdown-item"><%= link_to "New post", new_post_path %></li>
+                          </ul>
+                  </li>
+              </ul>
+            </ul>
       <% elsif admin_signed_in? %>
-      <nav class="navbar navbar-expand-lg navbar-light">
-           <div class="container">
-              <h2><%= link_to "Declutter",admins_path,class:'navbar-brand' %></h2>
-               <span><%= @header_login_name %>でログイン中です</span>
-                 <ul class="navbar-nav " >
-                   <li><%= form_tag(admins_search_result_path,:method => 'get') do %>
-                         <%= select_tag :target, options_for_select([["ユーザー","user"], ["投稿","post"]],:selected=>"user") %>
-                         <%= text_field_tag :search, nil %>
-                         <%= submit_tag 'Search', :name => nil %></li>
-                      <% end %>
-                  <li>　<%= link_to "Log out", destroy_admin_session_path, method: :delete  %></li>
-                </ul>
-          </div>
-        </nav>
+          <nav class="navbar navbar-expand-lg navbar-light">
+              <div class="container">
+                  <h2><%= link_to "Declutter",admins_path,class:'navbar-brand' %></h2>
+                      <span><%= @header_login_name %>でログイン中です</span>
+                          <ul class="navbar-nav " >
+                              <li><%= form_tag(admins_search_result_path,:method => 'get') do %>
+                                      <%= select_tag :target, options_for_select([["ユーザー","user"], ["投稿","post"]],:selected=>"user") %>
+                                      <%= text_field_tag :search, nil %>
+                                      <%= submit_tag 'Search', :name => nil %></li>
+                                  <% end %>
+                              <li>　<%= link_to "Log out", destroy_admin_session_path, method: :delete  %></li>
+                          </ul>
+              </div>
+          </nav>
       <% else %>
-      <nav class="navbar navbar-expand-lg navbar-light">
-           <div class="container">
-             <h2><%= link_to "Declutter",root_path,class:'navbar-brand' %></h2>
-      <ul class="navbar-nav navbar-right">
-        <li>
-              <%= form_tag(search_result_path,:method => 'get',class:'navbar-form') do %>
-                <%= text_field_tag :search, nil, :placeholder => 'Postを検索！' %>
-                <%= hidden_field_tag :target, "post"  %>
-                <%= submit_tag 'Search', :name => nil %>
-              <% end %>
-            </li>
-        <li class="nav-item dropdown">
-         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-           Menu
-         </a>
-         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li class="dropdown-item"><%= link_to "Guest Login", tops_guest_sign_in_path,method: :post %></li>
-            <li class="dropdown-item"><%= link_to "User Login", new_user_session_path  %></li>
-            <li class="dropdown-item"><%= link_to "Admin Login", new_admin_session_path  %></li>
-         </ul>
-        </li>
-      </ul>
-      <% end %>
-    </ul>
-  </div>
-
-    </ul>
-   </nav>
+          <nav class="navbar navbar-expand-lg navbar-light">
+              <div class="container">
+                  <h2><%= link_to "Declutter",root_path,class:'navbar-brand' %></h2>
+                      <ul class="navbar-nav navbar-right">
+                          <li>
+                              <%= form_tag(search_result_path,:method => 'get',class:'navbar-form') do %>
+                                  <%= text_field_tag :search, nil, :placeholder => 'Postを検索！' %>
+                                  <%= hidden_field_tag :target, "post"  %>
+                                  <%= submit_tag 'Search', :name => nil %>
+                              <% end %>
+                          </li>
+                          <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                              Menu</a>
+                                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                      <li class="dropdown-item"><%= link_to "Guest Login", tops_guest_sign_in_path,method: :post %></li>
+                                      <li class="dropdown-item"><%= link_to "User Login", new_user_session_path  %></li>
+                                      <li class="dropdown-item"><%= link_to "Admin Login", new_admin_session_path  %></li>
+                                  </ul>
+                          </li>
+                      </ul>
+                <% end %>
+              </ul>
+            </div>
+        </ul>
+    </nav>
 </header>
 
 
